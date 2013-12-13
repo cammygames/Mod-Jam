@@ -56,7 +56,6 @@ public class WDFlameThrower  extends Item
 		
 		if (player.inventory.hasItem(Item.fireballCharge.itemID)) 
     	{
-			player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 1, 3));
 			
 			World world = player.worldObj;
 			ArrowNockEvent event = new ArrowNockEvent(player, itemStack);
@@ -78,30 +77,11 @@ public class WDFlameThrower  extends Item
 			double z = player.posZ;
 	
 			FireBall fireball = new FireBall(world, x, y, z, xDirection, yDirection, zDirection);		
-
+			fireball.setExplosive(true);
+			
 			player.inventory.consumeInventoryItem(Item.fireballCharge.itemID);
 	    	world.spawnParticle("smoke", player.posX+1, player.posY-1, player.posZ, 0.0D, 0.0D, 0.0D);
 			world.spawnEntityInWorld(fireball);		
-			
-			 int power = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, itemStack);
-	            if (power > 0) {
-	                fireball.setDamage(fireball.getDamage() + (double) power * 0.5D + 0.5D);
-	                if (power == 5) {
-	                    fireball.setExplosive(true);
-	                }
-	            }
-
-	            int knockback = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, itemStack);
-	            if (knockback > 0) {
-	                fireball.setKnockbackStrength(knockback);
-	            }
-
-	            if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, itemStack) > 0) {
-	                fireball.setFire(100);
-	            }
-
-	            itemStack.damageItem(1, player);
-	            world.playAuxSFX(1009, (int) x, (int) y, (int) z, 0);
     	}
     		 
 	}	
