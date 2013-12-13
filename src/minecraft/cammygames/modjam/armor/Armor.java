@@ -45,14 +45,18 @@ public class Armor
     @EventHandler
     public void load(FMLInitializationEvent event) 
     {
-    	SantaHelmet = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 6, EnumArmorMaterial.IRON, 4, 0).setUnlocalizedName("SantaHelmet").setTextureName("WarDefence:ScubaHelmet");
-    	SantaBody = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 7, EnumArmorMaterial.IRON, 4, 1).setUnlocalizedName("SantaBody").setTextureName("WarDefence:ScubaBody");
-    	SantaLegs = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 8, EnumArmorMaterial.IRON, 4, 2).setUnlocalizedName("SantaLegs").setTextureName("WarDefence:ScubaLegs");
-    	SantaBoots = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 9, EnumArmorMaterial.IRON, 4, 3).setUnlocalizedName("SantaBoots").setTextureName("WarDefence:ScubaBoots");
+    	SantaHelmet = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 6, EnumArmorMaterial.CLOTH, 4, 0).setUnlocalizedName("SantaHelmet").setTextureName("WarDefence:ScubaHelmet");
+    	SantaBody = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 7, EnumArmorMaterial.CLOTH, 4, 1).setUnlocalizedName("SantaBody").setTextureName("WarDefence:ScubaBody");
+    	SantaLegs = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 8, EnumArmorMaterial.CLOTH, 4, 2).setUnlocalizedName("SantaLegs").setTextureName("WarDefence:ScubaLegs");
+    	SantaBoots = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 9, EnumArmorMaterial.CLOTH, 4, 3).setUnlocalizedName("SantaBoots").setTextureName("WarDefence:ScubaBoots");
     	
     	ScubaHelmet = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 10, EnumArmorMaterial.IRON, 4, 0).setUnlocalizedName("ScubaHelmet").setTextureName("WarDefence:ScubaHelmet");
     	ScubaBody = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 11, EnumArmorMaterial.IRON, 4, 1).setUnlocalizedName("ScubaBody").setTextureName("WarDefence:ScubaBody");
     	ScubaLegs = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 12, EnumArmorMaterial.IRON, 4, 2).setUnlocalizedName("ScubaLegs").setTextureName("WarDefence:ScubaLegs");
     	ScubaBoots = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 13, EnumArmorMaterial.IRON, 4, 3).setUnlocalizedName("ScubaBoots").setTextureName("WarDefence:ScubaBoots");
+    
+    	SpyHat = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 14, EnumArmorMaterial.CLOTH, 4, 0).setUnlocalizedName("SpyHat").setTextureName("WarDefence:SpyHat");
+    	SpyBody = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 15, EnumArmorMaterial.CLOTH, 4, 1).setUnlocalizedName("SpyBody").setTextureName("WarDefence:SpyBody");
+    	SpyLegs = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 16, EnumArmorMaterial.CLOTH, 4, 2).setUnlocalizedName("SpyLegs").setTextureName("WarDefence:SpyLegs");
     }
 }

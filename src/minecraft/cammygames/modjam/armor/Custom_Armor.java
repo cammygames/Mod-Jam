@@ -34,7 +34,19 @@ public class Custom_Armor extends ItemArmor
 				player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 1, 3));
 			}
 				
-		}
+			if(boots.getItem() == Armor.SpyBoots && legs.getItem() == Armor.SpyLegs && chest.getItem() == Armor.SpyBody && helmet.getItem() == Armor.SpyHat)
+			{
+				if (player.isSneaking()) 
+				{
+					player.setInvisible(true);
+				}
+				else 
+				{
+					player.setInvisible(false);
+				}
+			}	
+			
+		}		
 	}
 	
 	
@@ -58,6 +70,17 @@ public class Custom_Armor extends ItemArmor
 		{
 			return "wardefence:textures/modles/Armor/scuba_2.png";
 		} 
+		
+		if (stack.itemID == Armor.SpyHat.itemID || stack.itemID == Armor.SpyBody.itemID || stack.itemID == Armor.SpyBoots.itemID) 
+		{
+			return "wardefence:textures/modles/Armor/spy_1.png";
+		}
+		if (stack.itemID == Armor.SpyLegs.itemID) 
+		{
+			return "wardefence:textures/modles/Armor/spy_2.png";
+		} 
+		
+		
 		
 		else { return null; }
 	}
