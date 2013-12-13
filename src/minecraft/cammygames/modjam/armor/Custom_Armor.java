@@ -19,6 +19,23 @@ public class Custom_Armor extends ItemArmor
 		this.setCreativeTab(Armor.WarDefenceArmor);
 	}
 	
+	@Override
+	public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack stack) 
+	{
+		ItemStack boots = player.getCurrentArmor(0);
+		ItemStack legs = player.getCurrentArmor(1);
+		ItemStack chest = player.getCurrentArmor(2);
+		ItemStack helmet = player.getCurrentArmor(3);
+		
+		if(boots != null && legs != null && chest != null && helmet != null)
+		{	
+			if(boots.getItem() == Armor.ScubaBoots && legs.getItem() == Armor.ScubaLegs && chest.getItem() == Armor.ScubaBody && helmet.getItem() == Armor.ScubaHelmet)
+			{
+				player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 1, 3));
+			}
+				
+		}
+	}
 	
 	
 	
@@ -31,6 +48,15 @@ public class Custom_Armor extends ItemArmor
 		if (stack.itemID == Armor.SantaLegs.itemID) 
 		{
 			return "wardefence:textures/modles/Armor/santa_2.png";
+		} 
+		
+		if (stack.itemID == Armor.ScubaHelmet.itemID || stack.itemID == Armor.ScubaBody.itemID || stack.itemID == Armor.ScubaBoots.itemID) 
+		{
+			return "wardefence:textures/modles/Armor/scuba_1.png";
+		}
+		if (stack.itemID == Armor.ScubaLegs.itemID) 
+		{
+			return "wardefence:textures/modles/Armor/scuba_2.png";
 		} 
 		
 		else { return null; }

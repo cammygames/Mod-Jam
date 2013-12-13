@@ -49,5 +49,10 @@ public class Armor
     	SantaBody = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 7, EnumArmorMaterial.IRON, 4, 1).setUnlocalizedName("SantaBody").setTextureName("WarDefence:ScubaBody");
     	SantaLegs = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 8, EnumArmorMaterial.IRON, 4, 2).setUnlocalizedName("SantaLegs").setTextureName("WarDefence:ScubaLegs");
     	SantaBoots = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 9, EnumArmorMaterial.IRON, 4, 3).setUnlocalizedName("SantaBoots").setTextureName("WarDefence:ScubaBoots");
+    	
+    	ScubaHelmet = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 10, EnumArmorMaterial.IRON, 4, 0).setUnlocalizedName("ScubaHelmet").setTextureName("WarDefence:ScubaHelmet");
+    	ScubaBody = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 11, EnumArmorMaterial.IRON, 4, 1).setUnlocalizedName("ScubaBody").setTextureName("WarDefence:ScubaBody");
+    	ScubaLegs = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 12, EnumArmorMaterial.IRON, 4, 2).setUnlocalizedName("ScubaLegs").setTextureName("WarDefence:ScubaLegs");
+    	ScubaBoots = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 13, EnumArmorMaterial.IRON, 4, 3).setUnlocalizedName("ScubaBoots").setTextureName("WarDefence:ScubaBoots");
     }
 }
