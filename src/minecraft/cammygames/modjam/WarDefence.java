@@ -3,10 +3,12 @@ package cammygames.modjam;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import cammygames.modjam.blocks.BlockBW;
 import cammygames.modjam.blocks.BlockBardbedWire;
 import cammygames.modjam.blocks.tabs.WDBlocks;
 import cammygames.modjam.blocks.tabs.WDItems;
+import cammygames.modjam.items.WarDefenceItems;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -23,6 +25,8 @@ public class WarDefence
 	public static CreativeTabs WarDefenceBlocks = new WDBlocks(CreativeTabs.getNextID(), "WarDefence: Blocks");
 	
 	public static final int BLOCK_ID_PREFIX = 3000;
+	public static final int ITEM_ID_PREFIX = 20000;
+	
 	public static String name = "WarDefence:";	
 	
 	public static Block BombWall;
@@ -33,6 +37,12 @@ public class WarDefence
     public static Block barbedwire;
 	
 
+	public static Item Knife;
+	public static Item Gel;
+	public static Item KevlarFiber;
+	public static Item camosegment;
+	public static Item KevlarPlate;
+    
     @EventHandler
     public void load(FMLInitializationEvent event) 
     {
@@ -65,7 +75,11 @@ public class WarDefence
          //--------------------------------------------\\
          //					ITEMS					  \\
          //--------------------------------------------\\
-         
+        Gel = new WarDefenceItems(ITEM_ID_PREFIX).setUnlocalizedName("Gel").setTextureName("WarDefence:Jelly");    
+        camosegment = new WarDefenceItems(ITEM_ID_PREFIX + 1).setUnlocalizedName("camosegment").setTextureName("WarDefence:camosegment");
+     	Knife = new WarDefenceKnife(ITEM_ID_PREFIX + 2,  WarDefenceKnife.EnumToolMaterialKnife).setUnlocalizedName("knife").setTextureName("WarDefence:knife");
+     	KevlarPlate = new WarDefenceItems(ITEM_ID_PREFIX + 31).setUnlocalizedName("KevlarPlate").setTextureName("WarDefence:JuggernautPlate");
+     	KevlarFiber = new WarDefenceItems(ITEM_ID_PREFIX + 32).setUnlocalizedName("KevlarFiber").setTextureName("WarDefence:Kevlar");
          
          //--------------------------------------------\\
          //				    CRAFTING				   \\
