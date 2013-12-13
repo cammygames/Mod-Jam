@@ -1,7 +1,8 @@
 package cammygames.modjam.items;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -53,7 +54,14 @@ public class WDFlameThrower  extends Item
 		
 		if (player.inventory.hasItem(Item.fireballCharge.itemID)) 
     	{
+
 			World world = player.worldObj;
+			ArrowNockEvent event = new ArrowNockEvent(player, itemStack);
+	        MinecraftForge.EVENT_BUS.post(event);
+	        if (event.isCanceled()) 
+	        {
+	            return;
+	        }
 			
 			double yaw = Math.toRadians(player.rotationYaw);
 			double pitch = Math.toRadians(player.rotationPitch);
@@ -63,14 +71,34 @@ public class WDFlameThrower  extends Item
 			double zDirection = Math.cos(yaw) * Math.cos(pitch);
 	
 			double x = player.posX;
-			double y = player.posY;
+			double y = player.posY-1;
 			double z = player.posZ;
 	
 			FireBall fireball = new FireBall(world, x, y, z, xDirection, yDirection, zDirection);		
 
 			player.inventory.consumeInventoryItem(Item.fireballCharge.itemID);
-	    	world.spawnParticle("smoke", player.posX, player.posY, player.posZ, 0.0D, 0.0D, 0.0D);
-			world.spawnEntityInWorld(fireball);			
+	    	world.spawnParticle("smoke", player.posX+1, player.posY-1, player.posZ, 0.0D, 0.0D, 0.0D);
+			world.spawnEntityInWorld(fireball);		
+			
+			 int power = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, itemStack);
+	            if (power > 0) {
+	                fireball.setDamage(fireball.getDamage() + (double) power * 0.5D + 0.5D);
+	                if (power == 5) {
+	                    fireball.setExplosive(true);
+	                }
+	            }
+
+	            int knockback = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, itemStack);
+	            if (knockback > 0) {
+	                fireball.setKnockbackStrength(knockback);
+	            }
+
+	            if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, itemStack) > 0) {
+	                fireball.setFire(100);
+	            }
+
+	            itemStack.damageItem(1, player);
+	            world.playAuxSFX(1009, (int) x, (int) y, (int) z, 0);
     	}
     		 
 	}	

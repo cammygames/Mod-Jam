@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 public class FireBall extends EntitySmallFireball
 {
-    private double damage = 2;
+    private double damage = 5;
     
     /**
      * The amount of knockback an arrow applies when it hits a mob.
@@ -65,58 +65,12 @@ public class FireBall extends EntitySmallFireball
      * Called when fireball hits a block or entity.
      */
     @Override
-    protected void onImpact(MovingObjectPosition movingObjectPosition) {
-        if (!this.worldObj.isRemote) {
-            if (movingObjectPosition.entityHit != null) {
-                if (!movingObjectPosition.entityHit.isImmuneToFire() && movingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeFireballDamage(this, this.shootingEntity), (int) this.damage)) {
-                    movingObjectPosition.entityHit.setFire(5);
-
-                    if (movingObjectPosition.entityHit instanceof EntityLiving) {
-                        if (this.knockbackStrength > 0) {
-                            double knockback = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-
-                            if (knockback > 0.0F) {
-                                movingObjectPosition.entityHit.addVelocity(this.motionX * this.knockbackStrength * 0.6000000238418579D / knockback, 0.1D, this.motionZ * this.knockbackStrength * 0.6000000238418579D / knockback);
-                            }
-                        }
-                    }
-                }
-            } else {
-                int x = movingObjectPosition.blockX;
-                int y = movingObjectPosition.blockY;
-                int z = movingObjectPosition.blockZ;
-
-                switch (movingObjectPosition.sideHit) {
-                    case 0:
-                        --y;
-                        break;
-                    case 1:
-                        ++y;
-                        break;
-                    case 2:
-                        --z;
-                        break;
-                    case 3:
-                        ++z;
-                        break;
-                    case 4:
-                        --x;
-                        break;
-                    case 5:
-                        ++x;
-                }
-
-                if (this.worldObj.isAirBlock(x, y, z)) {
-                    this.worldObj.setBlock(x, y, z, Block.fire.blockID);
-                }
-
-            }
-
-            if (this.isExplosive) {
-                this.worldObj.newExplosion((Entity) null, this.posX, this.posY, this.posZ, (float) this.explosionPower, true, this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"));
-            }
-
-            this.setDead();
+    protected void onImpact(MovingObjectPosition movingObjectPosition) 
+    {
+        if 	(movingObjectPosition.entityHit != null)
+        {
+        	movingObjectPosition.entityHit.setFire(100000);
+    
         }
     }
 
