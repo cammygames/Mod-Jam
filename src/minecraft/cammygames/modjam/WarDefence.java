@@ -10,6 +10,7 @@ import cammygames.modjam.blocks.tabs.WDBlocks;
 import cammygames.modjam.blocks.tabs.WDItems;
 import cammygames.modjam.items.WarDefenceItems;
 import cammygames.modjam.items.WarDefenceKnife;
+import cammygames.modjam.util.ToolTips_Helper;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -59,19 +60,19 @@ public class WarDefence
 		 concrete = new BlockBW(BLOCK_ID_PREFIX + 6, Material.rock).setHardness(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("concrete");
 		
 		 LanguageRegistry.addName(BombWall,"Bomb Proof Wall");
-		 GameRegistry.registerBlock(BombWall, "BombWall");
+		 GameRegistry.registerBlock(BombWall, ToolTips_Helper.class, "BombWall");
 		 
-		 LanguageRegistry.addName(BombWall2, "Bomb Proof Wall T2");
-		 GameRegistry.registerBlock(BombWall2, " BombWall2");
+		 LanguageRegistry.addName(BombWall2, "Bomb Proof Wall");
+		 GameRegistry.registerBlock(BombWall2, ToolTips_Helper.class, " BombWall2");
 		 
-		 LanguageRegistry.addName(BombWall3, "Bomb Proof Wall T3");
-		 GameRegistry.registerBlock(BombWall3, " BombWall3");
+		 LanguageRegistry.addName(BombWall3, "Bomb Proof Wall");
+		 GameRegistry.registerBlock(BombWall3, ToolTips_Helper.class, " BombWall3");
 		 
 		 LanguageRegistry.addName(concrete, "Concrete");
-		 GameRegistry.registerBlock(concrete, "concrete");         
+		 GameRegistry.registerBlock(concrete, ToolTips_Helper.class, "concrete");         
 		 
 		 LanguageRegistry.addName(barbedwire, "Barbedwire");
-		 GameRegistry.registerBlock(barbedwire, "barbedwire");
+		 GameRegistry.registerBlock(barbedwire, ToolTips_Helper.class, "barbedwire");
          
          //--------------------------------------------\\
          //					ITEMS					  \\
