@@ -8,6 +8,7 @@ import cammygames.modjam.blocks.BlockBW;
 import cammygames.modjam.blocks.BlockBardbedWire;
 import cammygames.modjam.blocks.tabs.WDBlocks;
 import cammygames.modjam.blocks.tabs.WDItems;
+import cammygames.modjam.items.WDFlameThrower;
 import cammygames.modjam.items.WarDefenceItems;
 import cammygames.modjam.items.WarDefenceKnife;
 import cammygames.modjam.util.ToolTips_Helper;
@@ -40,6 +41,7 @@ public class WarDefence
 	
 
 	public static Item Knife;
+	public static Item flameThrower;
 	public static Item Gel;
 	public static Item KevlarFiber;
 	public static Item camosegment;
@@ -82,12 +84,15 @@ public class WarDefence
 			Knife = new WarDefenceKnife(ITEM_ID_PREFIX + 2,  WarDefenceKnife.EnumToolMaterialKnife).setUnlocalizedName("knife").setTextureName("WarDefence:knife");
 			KevlarPlate = new WarDefenceItems(ITEM_ID_PREFIX + 31).setUnlocalizedName("KevlarPlate").setTextureName("WarDefence:KevlarPlate");
 			KevlarFiber = new WarDefenceItems(ITEM_ID_PREFIX + 32).setUnlocalizedName("KevlarFiber").setTextureName("WarDefence:Kevlar");
-     
+			flameThrower = new WDFlameThrower(ITEM_ID_PREFIX + 33).setUnlocalizedName("flameThrower").setTextureName("WarDefence:flameThrower");
+			
+			
 	        LanguageRegistry.addName(Gel, "Ballistics Gel");
 	        LanguageRegistry.addName(Knife, "Knife");
 	    	LanguageRegistry.addName(camosegment, "Camo Segment");   
 	    	LanguageRegistry.addName(KevlarPlate, "Kevlar Plate");   
 	    	LanguageRegistry.addName(KevlarFiber, "Kevlar Fiber");  
+	    	LanguageRegistry.addName(flameThrower, "Flame Thrower"); 
 			
          //--------------------------------------------\\
          //				    CRAFTING				   \\
