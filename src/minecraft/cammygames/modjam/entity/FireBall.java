@@ -69,7 +69,7 @@ public class FireBall extends EntitySmallFireball
     {
         if 	(movingObjectPosition.entityHit != null)
         {
-        	movingObjectPosition.entityHit.setFire(100000);
+        	movingObjectPosition.entityHit.setFire(15000);
     
         }
     }

@@ -5,6 +5,8 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
@@ -54,7 +56,8 @@ public class WDFlameThrower  extends Item
 		
 		if (player.inventory.hasItem(Item.fireballCharge.itemID)) 
     	{
-
+			player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 1, 3));
+			
 			World world = player.worldObj;
 			ArrowNockEvent event = new ArrowNockEvent(player, itemStack);
 	        MinecraftForge.EVENT_BUS.post(event);
