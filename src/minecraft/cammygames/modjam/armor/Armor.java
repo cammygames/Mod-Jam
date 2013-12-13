@@ -9,6 +9,7 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid="WarDefenceArmor", name="WarDefence : Armor", version="v0.0.1")
 @NetworkMod(clientSideRequired=true, serverSideRequired=false)
@@ -49,7 +50,7 @@ public class Armor
     	SantaBody = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 7, EnumArmorMaterial.CLOTH, 4, 1).setUnlocalizedName("SantaBody").setTextureName("WarDefence:ScubaBody");
     	SantaLegs = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 8, EnumArmorMaterial.CLOTH, 4, 2).setUnlocalizedName("SantaLegs").setTextureName("WarDefence:ScubaLegs");
     	SantaBoots = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 9, EnumArmorMaterial.CLOTH, 4, 3).setUnlocalizedName("SantaBoots").setTextureName("WarDefence:ScubaBoots");
-    	
+
     	ScubaHelmet = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 10, EnumArmorMaterial.IRON, 4, 0).setUnlocalizedName("ScubaHelmet").setTextureName("WarDefence:ScubaHelmet");
     	ScubaBody = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 11, EnumArmorMaterial.IRON, 4, 1).setUnlocalizedName("ScubaBody").setTextureName("WarDefence:ScubaBody");
     	ScubaLegs = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 12, EnumArmorMaterial.IRON, 4, 2).setUnlocalizedName("ScubaLegs").setTextureName("WarDefence:ScubaLegs");
@@ -58,5 +59,35 @@ public class Armor
     	SpyHat = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 14, EnumArmorMaterial.CLOTH, 4, 0).setUnlocalizedName("SpyHat").setTextureName("WarDefence:SpyHat");
     	SpyBody = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 15, EnumArmorMaterial.CLOTH, 4, 1).setUnlocalizedName("SpyBody").setTextureName("WarDefence:SpyBody");
     	SpyLegs = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 16, EnumArmorMaterial.CLOTH, 4, 2).setUnlocalizedName("SpyLegs").setTextureName("WarDefence:SpyLegs");
+    	SpyBoots = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 17, EnumArmorMaterial.CLOTH, 4, 3).setUnlocalizedName("SpyBoots").setTextureName("WarDefence:SpyBoots");
+    
+    	GhillieHelmet = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 18, EnumArmorMaterial.CLOTH, 4, 0).setUnlocalizedName("GhillieHelmet").setTextureName("WarDefence:GhillieHelmet");
+    	GhillieBody = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 29, EnumArmorMaterial.CLOTH, 4, 1).setUnlocalizedName("GhillieBody").setTextureName("WarDefence:GhillieBody");
+    	GhillieLegs = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 20, EnumArmorMaterial.CLOTH, 4, 2).setUnlocalizedName("GhillieLegs").setTextureName("WarDefence:GhillieLegs");
+    	GhillieBoots = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 22, EnumArmorMaterial.CLOTH, 4, 3).setUnlocalizedName("GhillieBoots").setTextureName("WarDefence:GhillieBoots");	
+    
+		LanguageRegistry.addName(ScubaHelmet, "Scuba Helmet");
+		LanguageRegistry.addName(ScubaBody, "Scuba Body");
+		LanguageRegistry.addName(ScubaLegs, "Scuba Legs");
+		LanguageRegistry.addName(ScubaBoots, "Scuba Boots");
+		 
+		LanguageRegistry.addName(SantaHelmet, "Santa Helmet");
+		LanguageRegistry.addName(SantaBody, "Santa Body");
+		LanguageRegistry.addName(SantaLegs, "Santa Legs");
+		LanguageRegistry.addName(SantaBoots, "Santa Boots");
+		
+		LanguageRegistry.addName(SpyHat, "Spy Hat");
+		LanguageRegistry.addName(SpyBody, "Spy Body");
+		LanguageRegistry.addName(SpyLegs, "Spy Legs");
+		LanguageRegistry.addName(SpyBoots, "Spy Boots");
+		
+		LanguageRegistry.addName(GhillieHelmet, "Ghillie Helmet");
+		LanguageRegistry.addName(GhillieBody, "Ghillie Body");
+		LanguageRegistry.addName(GhillieLegs, "Ghillie Legs");
+		LanguageRegistry.addName(GhillieBoots, "Ghillie Boots");
+    
+    
+    
+    
     }
 }

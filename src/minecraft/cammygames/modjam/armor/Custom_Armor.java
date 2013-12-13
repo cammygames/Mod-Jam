@@ -22,6 +22,7 @@ public class Custom_Armor extends ItemArmor
 	@Override
 	public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack stack) 
 	{
+		
 		ItemStack boots = player.getCurrentArmor(0);
 		ItemStack legs = player.getCurrentArmor(1);
 		ItemStack chest = player.getCurrentArmor(2);
@@ -33,7 +34,19 @@ public class Custom_Armor extends ItemArmor
 			{
 				player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 1, 3));
 			}
-				
+			
+			if(boots.getItem() == Armor.GhillieBoots && legs.getItem() == Armor.GhillieLegs && chest.getItem() == Armor.GhillieBody && helmet.getItem() == Armor.GhillieHelmet)
+			{
+				if (player.isSneaking()) 
+				{
+					player.setInvisible(true);
+				}
+				else 
+				{
+					player.setInvisible(false);
+				}
+			}
+			
 			if(boots.getItem() == Armor.SpyBoots && legs.getItem() == Armor.SpyLegs && chest.getItem() == Armor.SpyBody && helmet.getItem() == Armor.SpyHat)
 			{
 				if (player.isSneaking()) 
@@ -80,6 +93,14 @@ public class Custom_Armor extends ItemArmor
 			return "wardefence:textures/modles/Armor/spy_2.png";
 		} 
 		
+		if (stack.itemID == Armor.GhillieHelmet.itemID || stack.itemID == Armor.GhillieBody.itemID || stack.itemID == Armor.GhillieBoots.itemID) 
+		{
+			return "wardefence:textures/modles/Armor/ghillie_1.png";
+		}
+		if (stack.itemID == Armor.GhillieLegs.itemID) 
+		{
+			return "wardefence:textures/modles/Armor/ghillie_2.png";
+		} 
 		
 		
 		else { return null; }

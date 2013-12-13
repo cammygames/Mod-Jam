@@ -56,7 +56,11 @@ public class WDFlameThrower  extends Item
 	*/
 	@Override
 	public void onUsingItemTick(ItemStack itemStack, EntityPlayer player, int count) 
-	{
+	{   
+		if (count % 5 != 0) 
+		{
+			return;
+		}
 		
 		if (player.inventory.hasItem(Item.fireballCharge.itemID)) 
     	{
