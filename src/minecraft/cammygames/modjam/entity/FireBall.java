@@ -67,10 +67,35 @@ public class FireBall extends EntitySmallFireball
     @Override
     protected void onImpact(MovingObjectPosition movingObjectPosition) 
     {
-        if (movingObjectPosition.entityHit != null)
-        {
-        	movingObjectPosition.entityHit.setFire(15000*2100000000);
-        }
+            int x = movingObjectPosition.blockX;
+            int y = movingObjectPosition.blockY;
+            int z = movingObjectPosition.blockZ;
+
+            switch (movingObjectPosition.sideHit) 
+            {
+                case 0:
+                    --y;
+                    break;
+                case 1:
+                    ++y;
+                    break;
+                case 2:
+                    --z;
+                    break;
+                case 3:
+                    ++z;
+                    break;
+                case 4:
+                    --x;
+                    break;
+                case 5:
+                    ++x;
+            }
+
+            if (this.worldObj.isAirBlock(x, y, z)) 
+            {
+                this.worldObj.setBlock(x, y, z, Block.fire.blockID);
+            }
     }
 
     /**

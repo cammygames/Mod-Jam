@@ -73,8 +73,8 @@ public class WDFlameThrower  extends Item
 			double zDirection = Math.cos(yaw) * Math.cos(pitch);
 	
 			double x = player.posX;
-			double y = player.posY-1;
-			double z = player.posZ;
+			double y = player.posY-0.30;
+			double z = player.posZ-0.1;
 	
 			FireBall fireball = new FireBall(world, x, y, z, xDirection, yDirection, zDirection);		
 			fireball.setExplosive(true);
