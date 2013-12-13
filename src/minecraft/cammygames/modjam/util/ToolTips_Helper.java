@@ -29,10 +29,10 @@ public class ToolTips_Helper extends ItemBlock
     	{
     		list.add("Teir 3 Bomb Proof Wall");
     	}
-      	//if (this.getBlockID() == WarDefence.shatterGlass.blockID)
-    	//{
-    	//	list.add("Teir 1 Bomb Proof Wall");
-    	//}
+      	if (this.getBlockID() == WarDefence.shatterGlass.blockID)
+    	{
+    		list.add("Shatter Proof");
+    	}
       	if (this.getBlockID() == WarDefence.barbedwire.blockID)
     	{
     		list.add("Its Razer Sharp");

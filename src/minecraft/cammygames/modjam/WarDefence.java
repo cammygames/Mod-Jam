@@ -6,6 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import cammygames.modjam.blocks.BlockBW;
 import cammygames.modjam.blocks.BlockBardbedWire;
+import cammygames.modjam.blocks.BlockSGlass;
 import cammygames.modjam.blocks.tabs.WDBlocks;
 import cammygames.modjam.blocks.tabs.WDItems;
 import cammygames.modjam.items.WDFlameThrower;
@@ -26,6 +27,7 @@ public class WarDefence
 
 	public static CreativeTabs WarDefenceItems = new WDItems(CreativeTabs.getNextID(), "WarDefence: Items");
 	public static CreativeTabs WarDefenceBlocks = new WDBlocks(CreativeTabs.getNextID(), "WarDefence: Blocks");
+	
 	
 	public static final int BLOCK_ID_PREFIX = 3000;
 	public static final int ITEM_ID_PREFIX = 20000;
@@ -57,10 +59,13 @@ public class WarDefence
 		 BombWall = new BlockBW(BLOCK_ID_PREFIX + 1, Material.rock).setHardness(15).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BombWall");
 		 BombWall2 = new BlockBW(BLOCK_ID_PREFIX + 2, Material.rock).setHardness(50).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BombWall2");
 		 BombWall3 = new BlockBW(BLOCK_ID_PREFIX + 3, Material.rock).setHardness(85).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BombWall3");
-		 //shatterGlass = new BlockSGlass(BLOCK_ID_PREFIX + 4, Material.glass, false).setHardness(50).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("shatterGlass");
+		 shatterGlass = new BlockSGlass(BLOCK_ID_PREFIX + 4, Material.glass, false).setHardness(50).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("shatterGlass");
 		 barbedwire = new BlockBardbedWire(BLOCK_ID_PREFIX + 5, Material.iron).setHardness(50).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("barbedwire");
 		 concrete = new BlockBW(BLOCK_ID_PREFIX + 6, Material.rock).setHardness(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("concrete");
 		
+		 LanguageRegistry.addName(shatterGlass,"Re-enforced Glass");
+		 GameRegistry.registerBlock(shatterGlass, ToolTips_Helper.class, "shatterGlass");
+		 
 		 LanguageRegistry.addName(BombWall,"Bomb Proof Wall");
 		 GameRegistry.registerBlock(BombWall, ToolTips_Helper.class, "BombWall");
 		 

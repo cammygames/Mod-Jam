@@ -1,13 +1,13 @@
 package cammygames.modjam.blocks.tabs;
 
-import cammygames.modjam.WarDefence;
 import net.minecraft.creativetab.CreativeTabs;
+import cammygames.modjam.armour.Armour;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class WDItems extends CreativeTabs
+public class WDArmour extends CreativeTabs
 {
-	   public WDItems(int par1, String par2Str)
+	   public WDArmour(int par1, String par2Str)
 	   {
 		   super(par1, par2Str);
 	   }
@@ -15,11 +15,11 @@ public class WDItems extends CreativeTabs
 	   @SideOnly(Side.CLIENT)
 	   public int getTabIconItemIndex()
 	   {
-		   return WarDefence.Knife.itemID;
+		   return Armour.ScubaHelmet.itemID;
 	   }
 	 
 	   public String getTranslatedTabLabel()
 	   {
-		   return "WarDefence: Items";
+		   return "WarDefence: Armour";
 	   }
 }

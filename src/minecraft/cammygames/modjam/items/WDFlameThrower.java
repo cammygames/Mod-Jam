@@ -1,12 +1,10 @@
 package cammygames.modjam.items;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
+import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
@@ -21,6 +19,12 @@ public class WDFlameThrower  extends Item
 		this.setCreativeTab(WarDefence.WarDefenceItems);
 	}
 
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	{
+		list.add("Burn Baby Burn !");
+	}
+	
 	/**
 	* Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
 	*/
