@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import cammygames.modjam.armor.Armor;
 import cammygames.modjam.blocks.BlockBW;
 import cammygames.modjam.blocks.BlockBardbedWire;
 import cammygames.modjam.blocks.BlockSGlass;
@@ -111,6 +112,32 @@ public class WarDefence
 	        GameRegistry.addRecipe(new ItemStack(camosegment, 1), new Object[] { "AAA", "ABA", "AAA", Character.valueOf('A'), Block.leaves, Character.valueOf('B'), Item.stick });
 	        GameRegistry.addRecipe(new ItemStack(KevlarPlate, 1), new Object[] { "ACA", "CBC", "ACA", Character.valueOf('A'), Item.ingotIron, Character.valueOf('B'), Gel, Character.valueOf('C'), Item.diamond }); 
 	    	
+	        GameRegistry.addRecipe(new ItemStack(shatterGlass,16), "xxx", "xyx", "xxx",'x', Block.glass, 'y', BombWall);
+	        GameRegistry.addRecipe(new ItemStack(concrete,6), "xxx", "xyx", "xxx",'x', Block.stone, 'y', Block.gravel);
+	        GameRegistry.addRecipe(new ItemStack(BombWall,4), "xxx", "xyx", "xxx",'x', Item.ingotIron, 'y', concrete);
+	        GameRegistry.addRecipe(new ItemStack(BombWall2,4), "xxx", "dyd", "xxx",'x', Block.fenceIron, 'y', BombWall,'d', Block.stone);
+	        GameRegistry.addRecipe(new ItemStack(BombWall3,4), "xdx", "gyg", "xdx",'x', Block.fenceIron, 'y', BombWall2, 'g', Item.ingotGold, 'd', Item.diamond);
+   
+	        GameRegistry.addRecipe(new ItemStack(Armor.GhillieBody, 1), new Object[] { "A A", "ABA", "AAA", Character.valueOf('A'), WarDefence.camosegment, Character.valueOf('B'), WarDefence.KevlarFiber });
+	        GameRegistry.addRecipe(new ItemStack(Armor.GhillieHelmet, 1), new Object[] { "AAA", "ABA", Character.valueOf('A'), WarDefence.camosegment, Character.valueOf('B'), WarDefence.KevlarFiber });
+	        GameRegistry.addRecipe(new ItemStack(Armor.GhillieLegs, 1), new Object[] { "AAA", "ABA", "A A", Character.valueOf('A'), WarDefence.camosegment, Character.valueOf('B'), WarDefence.KevlarFiber }); 
+	        GameRegistry.addRecipe(new ItemStack(Armor.GhillieBoots, 1), new Object[] { "ABA", "A A", Character.valueOf('A'), WarDefence.camosegment, Character.valueOf('B'), WarDefence.KevlarFiber }); 
+    
+	        GameRegistry.addRecipe(new ItemStack(Armor.SpyHat, 1), new Object[] { "AAA", "ABA", Character.valueOf('A'), Block.cloth, Character.valueOf('B'), WarDefence.KevlarFiber }); 
+	        GameRegistry.addRecipe(new ItemStack(Armor.SpyBody, 1), new Object[] { "A A", "ABA", "AAA", Character.valueOf('A'), Block.cloth, Character.valueOf('B'), WarDefence.KevlarFiber }); 
+	        GameRegistry.addRecipe(new ItemStack(Armor.SpyLegs, 1), new Object[] { "AAA", "ABA", "A A", Character.valueOf('A'), Block.cloth, Character.valueOf('B'), WarDefence.KevlarFiber });
+	        GameRegistry.addRecipe(new ItemStack(Armor.SpyBoots, 1), new Object[] { "A A", "ABA", Character.valueOf('A'), Block.cloth, Character.valueOf('B'), WarDefence.KevlarFiber });
+	        
+	        GameRegistry.addRecipe(new ItemStack(Armor.JuggernautHelmet, 1), new Object[] { "AAA", "A A", Character.valueOf('A'),WarDefence.KevlarPlate });
+	        GameRegistry.addRecipe(new ItemStack(Armor.JuggernautBodyArmor, 1), new Object[] { "A A", "AAA", "AAA", Character.valueOf('A'),WarDefence.KevlarPlate });
+	        GameRegistry.addRecipe(new ItemStack(Armor.JuggernautLegs, 1), new Object[] { "AAA", "A A", "A A", Character.valueOf('A'),WarDefence.KevlarPlate });
+	        GameRegistry.addRecipe(new ItemStack(Armor.JuggernautBoots, 1), new Object[] { "A A", "A A", Character.valueOf('A'),WarDefence.KevlarPlate });
+    
+	        GameRegistry.addRecipe(new ItemStack(Armor.ScubaHelmet, 1), new Object[] { "BBB", "BAB", "BBB", Character.valueOf('A'), Block.glass, Character.valueOf('B'), Block.cloth });
+	        GameRegistry.addRecipe(new ItemStack(Armor.ScubaBody, 1), new Object[] { "B B", "BBB", "BBB", Character.valueOf('B'), Block.cloth });
+	        GameRegistry.addRecipe(new ItemStack(Armor.ScubaLegs, 1), new Object[] { "BBB", "B B", "B B", Character.valueOf('B'), Block.cloth });
+	        GameRegistry.addRecipe(new ItemStack(Armor.ScubaBoots, 1), new Object[] { "B B", "B B", Character.valueOf('B'), Block.cloth });
+    
     }
 
 
