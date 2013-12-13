@@ -87,9 +87,9 @@ public class WarDefence
 			Gel = new WarDefenceItems(ITEM_ID_PREFIX).setUnlocalizedName("Gel").setTextureName("WarDefence:Jelly");    
 			camosegment = new WarDefenceItems(ITEM_ID_PREFIX + 1).setUnlocalizedName("camosegment").setTextureName("WarDefence:camosegment");
 			Knife = new WarDefenceKnife(ITEM_ID_PREFIX + 2,  WarDefenceKnife.EnumToolMaterialKnife).setUnlocalizedName("knife").setTextureName("WarDefence:knife");
-			KevlarPlate = new WarDefenceItems(ITEM_ID_PREFIX + 31).setUnlocalizedName("KevlarPlate").setTextureName("WarDefence:KevlarPlate");
-			KevlarFiber = new WarDefenceItems(ITEM_ID_PREFIX + 32).setUnlocalizedName("KevlarFiber").setTextureName("WarDefence:Kevlar");
-			flameThrower = new WDFlameThrower(ITEM_ID_PREFIX + 33).setUnlocalizedName("flameThrower").setTextureName("WarDefence:flameThrower");
+			KevlarPlate = new WarDefenceItems(ITEM_ID_PREFIX + 3).setUnlocalizedName("KevlarPlate").setTextureName("WarDefence:KevlarPlate");
+			KevlarFiber = new WarDefenceItems(ITEM_ID_PREFIX + 4).setUnlocalizedName("KevlarFiber").setTextureName("WarDefence:Kevlar");
+			flameThrower = new WDFlameThrower(ITEM_ID_PREFIX + 5).setUnlocalizedName("flameThrower").setTextureName("WarDefence:flameThrower");
 			
 			
 	        LanguageRegistry.addName(Gel, "Ballistics Gel");

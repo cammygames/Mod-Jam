@@ -1,7 +1,7 @@
 package cammygames.modjam.blocks.tabs;
 
 import net.minecraft.creativetab.CreativeTabs;
-import cammygames.modjam.armour.Armour;
+import cammygames.modjam.armor.Armor;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -15,7 +15,7 @@ public class WDArmour extends CreativeTabs
 	   @SideOnly(Side.CLIENT)
 	   public int getTabIconItemIndex()
 	   {
-		   return Armour.ScubaHelmet.itemID;
+		   return Armor.SantaHelmet.itemID;
 	   }
 	 
 	   public String getTranslatedTabLabel()
