@@ -23,6 +23,11 @@ public class Custom_Armor extends ItemArmor
 	public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack stack) 
 	{
 		
+		if (stack.itemID == Armor.JuggernautHelmet.itemID || stack.itemID == Armor.JuggernautBodyArmor.itemID || stack.itemID == Armor.JuggernautBoots.itemID || stack.itemID == Armor.JuggernautLegs.itemID) 
+		{
+			player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 20*1, 3));
+		}
+		
 		ItemStack boots = player.getCurrentArmor(0);
 		ItemStack legs = player.getCurrentArmor(1);
 		ItemStack chest = player.getCurrentArmor(2);
@@ -102,6 +107,14 @@ public class Custom_Armor extends ItemArmor
 			return "wardefence:textures/modles/Armor/ghillie_2.png";
 		} 
 		
+		if (stack.itemID == Armor.JuggernautHelmet.itemID || stack.itemID == Armor.JuggernautBodyArmor.itemID || stack.itemID == Armor.JuggernautBoots.itemID) 
+		{
+			return "WarDefence:textures/modles/armor/jug_1.png";
+		}
+		if (stack.itemID == Armor.JuggernautLegs.itemID) 
+		{
+			return "WarDefence:textures/modles/armor/jug_2.png";
+		} 
 		
 		else { return null; }
 	}

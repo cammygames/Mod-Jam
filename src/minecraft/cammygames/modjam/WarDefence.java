@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import cammygames.modjam.blocks.BlockBW;
 import cammygames.modjam.blocks.BlockBardbedWire;
 import cammygames.modjam.blocks.BlockSGlass;
@@ -20,7 +21,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid="WarDefence", name="WarDefence : Core", version="v0.0.1")
+@Mod(modid="WarDefence", name="WarDefence : WarDefence", version="v0.0.1")
 @NetworkMod(clientSideRequired=true, serverSideRequired=false)
 public class WarDefence 
 {
@@ -103,6 +104,13 @@ public class WarDefence
          //				    CRAFTING				   \\
          //--------------------------------------------\\
          
+	    	GameRegistry.addRecipe(new ItemStack(barbedwire, 12), new Object[] { "AAA", "BBB", "AAA", Character.valueOf('A'), Item.ingotIron, Character.valueOf('B'), Item.flint });
+	    	GameRegistry.addRecipe(new ItemStack(Gel, 1), new Object[] { "TT ", "TT ", Character.valueOf('T'), Item.slimeBall });
+	    	GameRegistry.addRecipe(new ItemStack(KevlarFiber, 1), new Object[] {"TGT", "GTG ", "TGT", Character.valueOf('T'), Block.fenceIron, Character.valueOf('G'), WarDefence.Gel });
+	    	GameRegistry.addRecipe(new ItemStack(Knife, 1), new Object[] { " T ", "ABA", " A ", Character.valueOf('T'), Item.stick, Character.valueOf('A'), Item.ingotIron, Character.valueOf('B'), Item.emerald });
+	        GameRegistry.addRecipe(new ItemStack(camosegment, 1), new Object[] { "AAA", "ABA", "AAA", Character.valueOf('A'), Block.leaves, Character.valueOf('B'), Item.stick });
+	        GameRegistry.addRecipe(new ItemStack(KevlarPlate, 1), new Object[] { "ACA", "CBC", "ACA", Character.valueOf('A'), Item.ingotIron, Character.valueOf('B'), Gel, Character.valueOf('C'), Item.diamond }); 
+	    	
     }
 
 

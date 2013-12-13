@@ -66,6 +66,12 @@ public class Armor
     	GhillieLegs = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 20, EnumArmorMaterial.CLOTH, 4, 2).setUnlocalizedName("GhillieLegs").setTextureName("WarDefence:GhillieLegs");
     	GhillieBoots = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 22, EnumArmorMaterial.CLOTH, 4, 3).setUnlocalizedName("GhillieBoots").setTextureName("WarDefence:GhillieBoots");	
     
+    	JuggernautHelmet = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 23, EnumArmorMaterial.IRON, 4, 0).setUnlocalizedName("JuggernautHelmet").setTextureName("WarDefence:JuggernautHelmet");
+    	JuggernautBodyArmor = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 24, EnumArmorMaterial.IRON, 4, 1).setUnlocalizedName("JuggernautBodyArmor").setTextureName("WarDefence:JBA");
+    	JuggernautLegs = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 25, EnumArmorMaterial.IRON, 4, 2).setUnlocalizedName("JuggernautLegs").setTextureName("WarDefence:JuggernautLegs");
+    	JuggernautBoots = new Custom_Armor(WarDefence.ITEM_ID_PREFIX + 26, EnumArmorMaterial.IRON, 4, 3).setUnlocalizedName("JuggernautBoots").setTextureName("WarDefence:juggernautboots");
+    	
+    	
 		LanguageRegistry.addName(ScubaHelmet, "Scuba Helmet");
 		LanguageRegistry.addName(ScubaBody, "Scuba Body");
 		LanguageRegistry.addName(ScubaLegs, "Scuba Legs");
@@ -85,9 +91,11 @@ public class Armor
 		LanguageRegistry.addName(GhillieBody, "Ghillie Body");
 		LanguageRegistry.addName(GhillieLegs, "Ghillie Legs");
 		LanguageRegistry.addName(GhillieBoots, "Ghillie Boots");
-    
-    
-    
+		
+        LanguageRegistry.addName(JuggernautHelmet, "Juggernaut Helmet");
+        LanguageRegistry.addName(JuggernautBodyArmor, "Juggernaut Body Armor");
+        LanguageRegistry.addName(JuggernautLegs, "Juggernaut Legs");
+        LanguageRegistry.addName(JuggernautBoots, "Juggernaut Boots");
     
     }
 }

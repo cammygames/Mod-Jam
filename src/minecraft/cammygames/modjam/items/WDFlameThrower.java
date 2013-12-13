@@ -57,7 +57,7 @@ public class WDFlameThrower  extends Item
 	@Override
 	public void onUsingItemTick(ItemStack itemStack, EntityPlayer player, int count) 
 	{   
-		if (count % 5 != 0) 
+		if (count % 2 != 0) 
 		{
 			return;
 		}
