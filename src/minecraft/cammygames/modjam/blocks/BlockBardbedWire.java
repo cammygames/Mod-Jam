@@ -1,5 +1,6 @@
 package cammygames.modjam.blocks;
 
+import cammygames.modjam.WarDefence;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -17,7 +18,7 @@ public class BlockBardbedWire extends Block
 	public BlockBardbedWire(int par1, Material par2Material) 
 	{
 		super(par1, par2Material);
-		this.setCreativeTab(CreativeTabs.tabBlock);
+		this.setCreativeTab(WarDefence.WarDefenceBlocks);
 	}
 	
 	/**

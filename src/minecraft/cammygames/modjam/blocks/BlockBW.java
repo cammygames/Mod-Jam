@@ -14,7 +14,7 @@ public class BlockBW extends Block
 	public BlockBW(int par1, Material par2Material) 
 	{
 		super(par1, par2Material);
-		this.setCreativeTab(CreativeTabs.tabBlock);
+		this.setCreativeTab(WarDefence.WarDefenceBlocks);
 	}
 	
 	@Override

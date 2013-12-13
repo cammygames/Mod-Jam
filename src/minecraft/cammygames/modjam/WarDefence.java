@@ -2,8 +2,11 @@ package cammygames.modjam;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import cammygames.modjam.blocks.BlockBW;
 import cammygames.modjam.blocks.BlockBardbedWire;
+import cammygames.modjam.blocks.tabs.WDBlocks;
+import cammygames.modjam.blocks.tabs.WDItems;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -16,6 +19,9 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class WarDefence 
 {
 
+	public static CreativeTabs WarDefenceItems = new WDItems(CreativeTabs.getNextID(), "WarDefence: Items");
+	public static CreativeTabs WarDefenceBlocks = new WDBlocks(CreativeTabs.getNextID(), "WarDefence: Blocks");
+	
 	public static final int BLOCK_ID_PREFIX = 3000;
 	public static String name = "WarDefence:";	
 	
