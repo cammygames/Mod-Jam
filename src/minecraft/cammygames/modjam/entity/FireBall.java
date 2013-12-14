@@ -1,5 +1,7 @@
 package cammygames.modjam.entity;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -13,7 +15,7 @@ import net.minecraft.world.World;
 public class FireBall extends EntitySmallFireball
 {
     private double damage = 5;
-    
+    protected static Random itemRand = new Random();
     /**
      * The amount of knockback an arrow applies when it hits a mob.
      */
@@ -94,7 +96,8 @@ public class FireBall extends EntitySmallFireball
 
             if (this.worldObj.isAirBlock(x, y, z)) 
             {
-                this.worldObj.setBlock(x, y, z, Block.fire.blockID);
+            	this.worldObj.playSoundEffect((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
+            	this.worldObj.setBlock(x, y, z, Block.fire.blockID);
             }
     }
 

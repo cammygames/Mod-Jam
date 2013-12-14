@@ -94,8 +94,8 @@ public class WarDefence
 			KevlarPlate = new WarDefenceItems(ITEM_ID_PREFIX + 3).setUnlocalizedName("KevlarPlate").setTextureName("WarDefence:KevlarPlate");
 			KevlarFiber = new WarDefenceItems(ITEM_ID_PREFIX + 4).setUnlocalizedName("KevlarFiber").setTextureName("WarDefence:Kevlar");
 			flameThrower = new WDFlameThrower(ITEM_ID_PREFIX + 5).setUnlocalizedName("flameThrower").setTextureName("WarDefence:flameThrower");
-			gasThrower = new WDGasThrower(ITEM_ID_PREFIX + 6).setUnlocalizedName("gasThrower").setTextureName("WarDefence:flameThrower");
-			csGas = new WarDefenceItems(ITEM_ID_PREFIX + 7).setUnlocalizedName("csGas").setTextureName("WarDefence:csGas");    
+			gasThrower = new WDGasThrower(ITEM_ID_PREFIX + 27).setUnlocalizedName("gasThrower").setTextureName("WarDefence:flameThrower");
+			csGas = new WarDefenceItems(ITEM_ID_PREFIX + 28).setUnlocalizedName("csGas").setTextureName("WarDefence:csGas");    
 			
 			
 	        LanguageRegistry.addName(Gel, "Ballistics Gel");
