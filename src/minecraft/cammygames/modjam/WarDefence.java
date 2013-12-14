@@ -105,13 +105,17 @@ public class WarDefence
          //				    CRAFTING				   \\
          //--------------------------------------------\\
          
+	    	GameRegistry.addRecipe(new ItemStack(flameThrower, 1), new Object[] { "R  ", "CBC", "ACA", Character.valueOf('A'), Item.ingotIron, Character.valueOf('C'), KevlarFiber, Character.valueOf('R'), Item.diamond , Character.valueOf('B'), Block.blockRedstone}); 
+	    	
 	    	GameRegistry.addRecipe(new ItemStack(barbedwire, 12), new Object[] { "AAA", "BBB", "AAA", Character.valueOf('A'), Item.ingotIron, Character.valueOf('B'), Item.flint });
 	    	GameRegistry.addRecipe(new ItemStack(Gel, 1), new Object[] { "TT ", "TT ", Character.valueOf('T'), Item.slimeBall });
 	    	GameRegistry.addRecipe(new ItemStack(KevlarFiber, 1), new Object[] {"TGT", "GTG ", "TGT", Character.valueOf('T'), Block.fenceIron, Character.valueOf('G'), WarDefence.Gel });
 	    	GameRegistry.addRecipe(new ItemStack(Knife, 1), new Object[] { " T ", "ABA", " A ", Character.valueOf('T'), Item.stick, Character.valueOf('A'), Item.ingotIron, Character.valueOf('B'), Item.emerald });
 	        GameRegistry.addRecipe(new ItemStack(camosegment, 1), new Object[] { "AAA", "ABA", "AAA", Character.valueOf('A'), Block.leaves, Character.valueOf('B'), Item.stick });
-	        GameRegistry.addRecipe(new ItemStack(KevlarPlate, 1), new Object[] { "ACA", "CBC", "ACA", Character.valueOf('A'), Item.ingotIron, Character.valueOf('B'), Gel, Character.valueOf('C'), Item.diamond }); 
+	        
 	    	
+	        GameRegistry.addRecipe(new ItemStack(KevlarPlate, 1), new Object[] { "ACA", "CBC", "ACA", Character.valueOf('A'), Item.ingotIron, Character.valueOf('B'), Gel, Character.valueOf('C'), Item.diamond }); 
+	        
 	        GameRegistry.addRecipe(new ItemStack(shatterGlass,16), "xxx", "xyx", "xxx",'x', Block.glass, 'y', BombWall);
 	        GameRegistry.addRecipe(new ItemStack(concrete,6), "xxx", "xyx", "xxx",'x', Block.stone, 'y', Block.gravel);
 	        GameRegistry.addRecipe(new ItemStack(BombWall,4), "xxx", "xyx", "xxx",'x', Item.ingotIron, 'y', concrete);
