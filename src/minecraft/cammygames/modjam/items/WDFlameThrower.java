@@ -88,7 +88,7 @@ public class WDFlameThrower  extends Item
 			fireball.setExplosive(true);
 			
 			player.inventory.consumeInventoryItem(Item.fireballCharge.itemID);
-	    	world.spawnParticle("smoke", player.posX+1, player.posY-1, player.posZ, 0.0D, 0.0D, 0.0D);
+	    	world.spawnParticle("smoke", player.posX+1, player.posY-1, player.posZ-2, 0.0D, 0.0D, 0.0D);
 			world.spawnEntityInWorld(fireball);		
     	}
     		 

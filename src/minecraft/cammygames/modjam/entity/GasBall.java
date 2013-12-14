@@ -2,6 +2,7 @@ package cammygames.modjam.entity;
 
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -97,7 +98,7 @@ public class GasBall extends EntitySmallFireball
                 	 for(int g = 0; g < 20; g++) 
                 	 	for(int i = 0; i < 200; i++)
                                  worldObj.spawnParticle("largesmoke", posX + rand.nextGaussian(), posY + rand.nextGaussian(), posZ + rand.nextGaussian(), 0F, 0F, 0F);
-                 }
+                }
          }
          
     }
