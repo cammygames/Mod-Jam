@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import cammygames.modjam.armor.Armor;
 import cammygames.modjam.blocks.BlockBW;
 import cammygames.modjam.blocks.BlockBardbedWire;
-import cammygames.modjam.blocks.BlockPoisionGrass;
 import cammygames.modjam.blocks.BlockSGlass;
 import cammygames.modjam.blocks.tabs.WDBlocks;
 import cammygames.modjam.blocks.tabs.WDItems;
@@ -44,7 +43,6 @@ public class WarDefence
     public static Block concrete;
     public static Block shatterGlass;
     public static Block barbedwire;
-    public static BlockPoisionGrass sGrass;
 
 	public static Item Knife;
 	public static Item flameThrower;
@@ -68,7 +66,6 @@ public class WarDefence
 		 shatterGlass = new BlockSGlass(BLOCK_ID_PREFIX + 4, Material.glass, false).setHardness(50).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("shatterGlass");
 		 barbedwire = new BlockBardbedWire(BLOCK_ID_PREFIX + 5, Material.iron).setHardness(50).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("barbedwire");
 		 concrete = new BlockBW(BLOCK_ID_PREFIX + 6, Material.rock).setHardness(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("concrete");
-		 sGrass = (BlockPoisionGrass) new BlockPoisionGrass(BLOCK_ID_PREFIX + 7).setUnlocalizedName("sGrass");
 		 
 		 LanguageRegistry.addName(shatterGlass,"Re-enforced Glass");
 		 GameRegistry.registerBlock(shatterGlass, ToolTips_Helper.class, "shatterGlass");

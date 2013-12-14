@@ -96,7 +96,7 @@ public class GasBall extends EntitySmallFireball
                  if(!detonated)
                  {	
                 	 for(int g = 0; g < 20; g++) 
-                	 	for(int i = 0; i < 200; i++)
+                	 	for(int i = 0; i < 10; i++)
                                  worldObj.spawnParticle("largesmoke", posX + rand.nextGaussian(), posY + rand.nextGaussian(), posZ + rand.nextGaussian(), 0F, 0F, 0F);
                 }
          }
