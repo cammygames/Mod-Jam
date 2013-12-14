@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import cammygames.modjam.WarDefence;
-import cammygames.modjam.entity.FireBall;
+import cammygames.modjam.entity.GasBall;
 
 public class WDGasThrower  extends Item
 {
@@ -38,7 +38,7 @@ public class WDGasThrower  extends Item
 			return event.result;
 		}
 	
-		if (player.capabilities.isCreativeMode || player.inventory.hasItem(Item.fireballCharge.itemID)) 
+		if (player.capabilities.isCreativeMode || player.inventory.hasItem(WarDefence.csGas.itemID)) 
 		{
 			player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
 		}
@@ -62,7 +62,7 @@ public class WDGasThrower  extends Item
 			return;
 		}
 		
-		if (player.inventory.hasItem(Item.fireballCharge.itemID)) 
+		if (player.inventory.hasItem(WarDefence.csGas.itemID)) 
     	{
 			
 			World world = player.worldObj;
@@ -84,12 +84,13 @@ public class WDGasThrower  extends Item
 			double y = player.posY-0.30;
 			double z = player.posZ-0.1;
 	
-			FireBall fireball = new FireBall(world, x, y, z, xDirection, yDirection, zDirection);		
-			fireball.setExplosive(true);
+			GasBall gasBall = new GasBall(world, x, y, z, xDirection, yDirection, zDirection);		
+			gasBall.setExplosive(true);
 			
-			player.inventory.consumeInventoryItem(Item.fireballCharge.itemID);
-	    	world.spawnParticle("smoke", player.posX+1, player.posY-1, player.posZ, 0.0D, 0.0D, 0.0D);
-			world.spawnEntityInWorld(fireball);		
+			player.inventory.consumeInventoryItem(WarDefence.csGas.itemID);
+			
+			world.spawnParticle("smoke", player.posX+1, player.posY-1, player.posZ, 0.0D, 0.0D, 0.0D);
+			world.spawnEntityInWorld(gasBall);		
     	}
     		 
 	}	
