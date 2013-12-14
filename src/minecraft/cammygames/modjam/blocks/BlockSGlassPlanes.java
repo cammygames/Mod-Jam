@@ -32,9 +32,8 @@ public class BlockSGlassPlanes extends Block
 	public BlockSGlassPlanes(int par1, Material par2Material, boolean par3)
     {
         super(par1 ,par2Material);
-        canDropItself =  par3 ;
+        canDropItself= false ;
         this.setCreativeTab(WarDefence.WarDefenceBlocks);
-        this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
     /**
@@ -65,10 +64,6 @@ public class BlockSGlassPlanes extends Block
     /**
      * The type of render function that is called for this block
      */
-    public int getRenderType()
-    {
-        return 18;
-    }
 
     @SideOnly(Side.CLIENT)
 
