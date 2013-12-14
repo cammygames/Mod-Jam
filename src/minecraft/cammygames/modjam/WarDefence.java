@@ -9,7 +9,6 @@ import cammygames.modjam.armor.Armor;
 import cammygames.modjam.blocks.BlockBW;
 import cammygames.modjam.blocks.BlockBardbedWire;
 import cammygames.modjam.blocks.BlockSGlass;
-import cammygames.modjam.blocks.BlockSGlassPlanes;
 import cammygames.modjam.blocks.tabs.WDBlocks;
 import cammygames.modjam.blocks.tabs.WDItems;
 import cammygames.modjam.items.WDFlameThrower;
@@ -42,7 +41,6 @@ public class WarDefence
     public static Block BombWall3;
     public static Block concrete;
     public static Block shatterGlass;
-    public static Block shatterGlassPane;
     public static Block barbedwire;
 	
 
@@ -52,6 +50,7 @@ public class WarDefence
 	public static Item KevlarFiber;
 	public static Item camosegment;
 	public static Item KevlarPlate;
+	public static Item csGas;
     
     @EventHandler
     public void load(FMLInitializationEvent event) 
@@ -66,13 +65,9 @@ public class WarDefence
 		 shatterGlass = new BlockSGlass(BLOCK_ID_PREFIX + 4, Material.glass, false).setHardness(50).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("shatterGlass");
 		 barbedwire = new BlockBardbedWire(BLOCK_ID_PREFIX + 5, Material.iron).setHardness(50).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("barbedwire");
 		 concrete = new BlockBW(BLOCK_ID_PREFIX + 6, Material.rock).setHardness(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("concrete");
-		 shatterGlassPane = new BlockSGlassPlanes(BLOCK_ID_PREFIX + 7, Material.glass, false).setHardness(50).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("shatterGlassPane");
 		 
 		 LanguageRegistry.addName(shatterGlass,"Re-enforced Glass");
 		 GameRegistry.registerBlock(shatterGlass, ToolTips_Helper.class, "shatterGlass");
-		 
-		 LanguageRegistry.addName(shatterGlassPane,"Re-enforced Glass Pane");
-		 GameRegistry.registerBlock(shatterGlassPane, ToolTips_Helper.class, "shatterGlassPane");
 		 
 		 LanguageRegistry.addName(BombWall,"Bomb Proof Wall");
 		 GameRegistry.registerBlock(BombWall, ToolTips_Helper.class, "BombWall");
@@ -98,11 +93,13 @@ public class WarDefence
 			KevlarPlate = new WarDefenceItems(ITEM_ID_PREFIX + 3).setUnlocalizedName("KevlarPlate").setTextureName("WarDefence:KevlarPlate");
 			KevlarFiber = new WarDefenceItems(ITEM_ID_PREFIX + 4).setUnlocalizedName("KevlarFiber").setTextureName("WarDefence:Kevlar");
 			flameThrower = new WDFlameThrower(ITEM_ID_PREFIX + 5).setUnlocalizedName("flameThrower").setTextureName("WarDefence:flameThrower");
+			csGas = new WarDefenceItems(ITEM_ID_PREFIX + 6).setUnlocalizedName("csGas").setTextureName("WarDefence:csGas");    
 			
 			
 	        LanguageRegistry.addName(Gel, "Ballistics Gel");
 	        LanguageRegistry.addName(Knife, "Knife");
 	    	LanguageRegistry.addName(camosegment, "Camo Segment");   
+	    	LanguageRegistry.addName(csGas, "Tear Gas"); 
 	    	LanguageRegistry.addName(KevlarPlate, "Kevlar Plate");   
 	    	LanguageRegistry.addName(KevlarFiber, "Kevlar Fiber");  
 	    	LanguageRegistry.addName(flameThrower, "Flame Thrower"); 
