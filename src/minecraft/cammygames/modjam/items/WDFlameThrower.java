@@ -2,14 +2,18 @@ package cammygames.modjam.items;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import cammygames.modjam.WarDefence;
 import cammygames.modjam.entity.FireBall;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class WDFlameThrower  extends Item
 {
@@ -24,6 +28,15 @@ public class WDFlameThrower  extends Item
 	{
 		list.add("Burn Baby Burn !");
 	}
+	
+	public static Icon particleIcon;
+	
+	@Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister iconRegister)
+	{
+        particleIcon = iconRegister.registerIcon("WarDefence:flames");
+    }
 	
 	/**
 	* Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
