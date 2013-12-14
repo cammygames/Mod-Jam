@@ -3,11 +3,10 @@ package cammygames.modjam.entity;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntitySmokeFX;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -98,6 +97,7 @@ public class FireBall extends EntitySmallFireball
             {
             	this.worldObj.playSoundEffect((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
             	this.worldObj.setBlock(x, y, z, Block.fire.blockID);
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntitySmokeFX(this.worldObj,(double)x,(double)y,(double)z,0,0,0) );
             }
     }
 

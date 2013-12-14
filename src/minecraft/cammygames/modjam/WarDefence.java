@@ -18,6 +18,8 @@ import cammygames.modjam.items.WarDefenceKnife;
 import cammygames.modjam.util.ToolTips_Helper;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -28,6 +30,13 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class WarDefence 
 {
 
+
+    @Instance("WarDefence")
+    public static WarDefence instance;
+	
+	@SidedProxy(clientSide="cammygames.modjam.ClientProxy", serverSide="cammygames.modjam.ServerProxy")
+	public static ServerProxy proxy;
+	
 	public static CreativeTabs WarDefenceItems = new WDItems(CreativeTabs.getNextID(), "WarDefence: Items");
 	public static CreativeTabs WarDefenceBlocks = new WDBlocks(CreativeTabs.getNextID(), "WarDefence: Blocks");
 	
