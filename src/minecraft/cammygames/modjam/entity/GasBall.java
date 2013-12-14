@@ -1,11 +1,7 @@
 package cammygames.modjam.entity;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -13,6 +9,8 @@ import net.minecraft.world.World;
 public class GasBall extends EntitySmallFireball
 {
     private double damage = 5;
+    public int wallTime = 0;
+    public boolean detonated = false;
     
     /**
      * The amount of knockback an arrow applies when it hits a mob.
@@ -92,23 +90,15 @@ public class GasBall extends EntitySmallFireball
                  ++x;
          }
     	
-			int timer = 0;
-			while (timer < 2000)
-			{
-				this.worldObj.spawnParticle("smoke", x-4, y-4, z-4, 0.0D, 0.0D, 0.0D);
-				this.worldObj.spawnParticle("smoke", x-3, y-3, z-3, 0.0D, 0.0D, 0.0D);
-				this.worldObj.spawnParticle("smoke", x-2, y-2, z-2, 0.0D, 0.0D, 0.0D);
-				this.worldObj.spawnParticle("smoke", x-1, y-1, z-1, 0.0D, 0.0D, 0.0D);
-				
-				this.worldObj.spawnParticle("smoke", x, y, z, 0.0D, 0.0D, 0.0D);
-				
-				this.worldObj.spawnParticle("smoke", x+1, y+1, z+1, 0.0D, 0.0D, 0.0D);
-				this.worldObj.spawnParticle("smoke", x+2, y+2, z+2, 0.0D, 0.0D, 0.0D);
-				this.worldObj.spawnParticle("smoke", x+3, y+3, z+3, 0.0D, 0.0D, 0.0D);
-				this.worldObj.spawnParticle("smoke", x+4, y+4, z+4, 0.0D, 0.0D, 0.0D);
-				
-				timer++;
-			}
+         if(worldObj.isRemote)
+         {
+                 if(!detonated)
+                 {	
+                	 for(int g = 0; g < 20; g++) 
+                	 	for(int i = 0; i < 200; i++)
+                                 worldObj.spawnParticle("largesmoke", posX + rand.nextGaussian(), posY + rand.nextGaussian(), posZ + rand.nextGaussian(), 0F, 0F, 0F);
+                 }
+         }
          
     }
 
