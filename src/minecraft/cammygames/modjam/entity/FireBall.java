@@ -21,7 +21,8 @@ public class FireBall extends EntitySmallFireball
     private boolean isExplosive;
     public int explosionPower = 1;
 
-    public FireBall(World world, double x, double y, double z, double xDirection, double yDirection, double zDirection) {
+    public FireBall(World world, double x, double y, double z, double xDirection, double yDirection, double zDirection) 
+    {
         super(world, x, y, z, xDirection, yDirection, zDirection);
 
 
@@ -36,26 +37,31 @@ public class FireBall extends EntitySmallFireball
      * the original motion.
      */
     @Override
-    protected float getMotionFactor() {
+    protected float getMotionFactor()
+    {
         return 1;
     }
 
-    public void setDamage(double damage) {
+    public void setDamage(double damage)
+    {
         this.damage = damage;
     }
 
-    public double getDamage() {
+    public double getDamage()
+    {
         return this.damage;
     }
 
     /**
      * Sets the amount of knockback the fireball applies when it hits a mob.
      */
-    public void setKnockbackStrength(int strength) {
+    public void setKnockbackStrength(int strength)
+    {
         this.knockbackStrength = strength;
     }
 
-    public void setExplosive(boolean isExplosive) {
+    public void setExplosive(boolean isExplosive)
+    {
         this.isExplosive = isExplosive;
     }
 
@@ -63,28 +69,38 @@ public class FireBall extends EntitySmallFireball
      * Called when fireball hits a block or entity.
      */
     @Override
-    protected void onImpact(MovingObjectPosition movingObjectPosition) {
-        if (!this.worldObj.isRemote) {
-            if (movingObjectPosition.entityHit != null) {
-                if (!movingObjectPosition.entityHit.isImmuneToFire() && movingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeFireballDamage(this, this.shootingEntity), (int) this.damage)) {
+    protected void onImpact(MovingObjectPosition movingObjectPosition) 
+    {
+        if (!this.worldObj.isRemote) 
+        {
+            if (movingObjectPosition.entityHit != null) 
+            {
+                if (!movingObjectPosition.entityHit.isImmuneToFire() && movingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeFireballDamage(this, this.shootingEntity), (int) this.damage))
+                {
                     movingObjectPosition.entityHit.setFire(5);
 
-                    if (movingObjectPosition.entityHit instanceof EntityLiving) {
-                        if (this.knockbackStrength > 0) {
+                    if (movingObjectPosition.entityHit instanceof EntityLiving)
+                    {
+                        if (this.knockbackStrength > 0)
+                        {
                             double knockback = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
-                            if (knockback > 0.0F) {
+                            if (knockback > 0.0F) 
+                            {
                                 movingObjectPosition.entityHit.addVelocity(this.motionX * this.knockbackStrength * 0.6000000238418579D / knockback, 0.1D, this.motionZ * this.knockbackStrength * 0.6000000238418579D / knockback);
                             }
                         }
                     }
                 }
-            } else {
+            } 
+            else 
+            {
                 int x = movingObjectPosition.blockX;
                 int y = movingObjectPosition.blockY;
                 int z = movingObjectPosition.blockZ;
 
-                switch (movingObjectPosition.sideHit) {
+                switch (movingObjectPosition.sideHit) 
+                {
                     case 0:
                         --y;
                         break;
@@ -104,13 +120,15 @@ public class FireBall extends EntitySmallFireball
                         ++x;
                 }
 
-                if (this.worldObj.isAirBlock(x, y, z)) {
+                if (this.worldObj.isAirBlock(x, y, z)) 
+                {
                     this.worldObj.setBlock(x, y, z, Block.fire.blockID);
                 }
 
             }
 
-            if (this.isExplosive) {
+            if (this.isExplosive)
+            {
                 this.worldObj.newExplosion((Entity) null, this.posX, this.posY, this.posZ, (float) this.explosionPower, true, this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"));
             }
 
@@ -122,7 +140,8 @@ public class FireBall extends EntitySmallFireball
      * Protected helper method to write subclass entity data to NBT.
      */
     @Override
-    public void writeEntityToNBT(NBTTagCompound nbt) {
+    public void writeEntityToNBT(NBTTagCompound nbt)
+    {
         super.writeEntityToNBT(nbt);
         nbt.setDouble("damage", this.damage);
         nbt.setInteger("ExplosionPower", this.explosionPower);
@@ -132,14 +151,17 @@ public class FireBall extends EntitySmallFireball
      * Protected helper method to read subclass entity data from NBT.
      */
     @Override
-    public void readEntityFromNBT(NBTTagCompound nbt) {
+    public void readEntityFromNBT(NBTTagCompound nbt) 
+    {
         super.readEntityFromNBT(nbt);
 
-        if (nbt.hasKey("damage")) {
+        if (nbt.hasKey("damage"))
+        {
             this.damage = nbt.getDouble("damage");
         }
 
-        if (nbt.hasKey("ExplosionPower")) {
+        if (nbt.hasKey("ExplosionPower"))
+        {
             this.explosionPower = nbt.getInteger("ExplosionPower");
         }
     }

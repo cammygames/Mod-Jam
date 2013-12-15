@@ -17,6 +17,7 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import cammygames.modjam.WarDefence;
 import cammygames.modjam.entity.FireBall;
+import cammygames.modjam.entity.GasBall;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -25,8 +26,7 @@ public class WDGasThrower extends ItemBow
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
-		list.add("Burn Baby Burn !");
-		list.add("Uses Fire Charges");
+		list.add("Uses CS Gas");
 	}
 	
     @Override
@@ -53,7 +53,8 @@ public class WDGasThrower extends ItemBow
      * world, entityplayer, itemInUseCount
      */
     @Override
-    public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int par4) {
+    public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int par4) 
+    {
     }
 
 
@@ -62,14 +63,17 @@ public class WDGasThrower extends ItemBow
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) 
+    {
         ArrowNockEvent event = new ArrowNockEvent(player, itemStack);
         MinecraftForge.EVENT_BUS.post(event);
-        if (event.isCanceled()) {
+        if (event.isCanceled())
+        {
             return event.result;
         }
 
-        if (player.capabilities.isCreativeMode || player.inventory.hasItem(Item.fireballCharge.itemID)) {
+        if (player.capabilities.isCreativeMode || player.inventory.hasItem(WarDefence.csGas.itemID))
+        {
             player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
         }
 
@@ -99,7 +103,7 @@ public class WDGasThrower extends ItemBow
             return;
         }
 
-        if (player.capabilities.isCreativeMode || player.inventory.hasItem(Item.fireballCharge.itemID))
+        if (player.capabilities.isCreativeMode || player.inventory.hasItem(WarDefence.csGas.itemID))
         {
             player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
         }
@@ -111,7 +115,7 @@ public class WDGasThrower extends ItemBow
 
         boolean flag = player.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, itemStack) > 0;
 
-        if (flag || player.inventory.hasItem(Item.fireballCharge.itemID)) 
+        if (flag || player.inventory.hasItem(WarDefence.csGas.itemID)) 
         {
             double yaw = Math.toRadians(player.rotationYaw);
             double pitch = Math.toRadians(player.rotationPitch);
@@ -124,7 +128,7 @@ public class WDGasThrower extends ItemBow
             double y = player.posY + 1.5 + yDirection;
             double z = player.posZ + zDirection * 2;
 
-            FireBall fireball = new FireBall(world, x, y, z, xDirection, yDirection, zDirection);
+            GasBall fireball = new GasBall(world, x, y, z, xDirection, yDirection, zDirection);
 
             int power = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, itemStack);
             if (power > 0) 
@@ -152,7 +156,7 @@ public class WDGasThrower extends ItemBow
 
             if (!flag) 
             {
-                player.inventory.consumeInventoryItem(Item.fireballCharge.itemID);
+                player.inventory.consumeInventoryItem(WarDefence.csGas.itemID);
             }
 
             if (!world.isRemote)

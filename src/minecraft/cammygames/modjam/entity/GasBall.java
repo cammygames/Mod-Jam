@@ -1,5 +1,8 @@
 package cammygames.modjam.entity;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -9,7 +12,8 @@ import net.minecraft.world.World;
 
 public class GasBall extends EntitySmallFireball
 {
-    private double damage = 5;
+
+	private double damage = 5;
     public int wallTime = 0;
     public boolean detonated = false;
     
