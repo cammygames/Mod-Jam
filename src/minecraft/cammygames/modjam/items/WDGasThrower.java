@@ -16,7 +16,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import cammygames.modjam.WarDefence;
-import cammygames.modjam.entity.FireBall;
 import cammygames.modjam.entity.GasBall;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -128,27 +127,27 @@ public class WDGasThrower extends ItemBow
             double y = player.posY + 1.5 + yDirection;
             double z = player.posZ + zDirection * 2;
 
-            GasBall fireball = new GasBall(world, x, y, z, xDirection, yDirection, zDirection);
+            GasBall gasball = new GasBall(world, x, y, z, xDirection, yDirection, zDirection);
 
             int power = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, itemStack);
             if (power > 0) 
             {
-                fireball.setDamage(fireball.getDamage() + (double) power * 0.5D + 0.5D);
+                gasball.setDamage(gasball.getDamage() + (double) power * 0.5D + 0.5D);
                 if (power == 5)
                 {
-                    fireball.setExplosive(true);
+                    gasball.setExplosive(true);
                 }
             }
 
             int knockback = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, itemStack);
             if (knockback > 0)
             {
-                fireball.setKnockbackStrength(knockback);
+                gasball.setKnockbackStrength(knockback);
             }
 
             if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, itemStack) > 0) 
             {
-                fireball.setFire(100);
+                gasball.setFire(100);
             }
 
             itemStack.damageItem(1, player);
@@ -161,7 +160,7 @@ public class WDGasThrower extends ItemBow
 
             if (!world.isRemote)
             {
-                world.spawnEntityInWorld(fireball);
+                world.spawnEntityInWorld(gasball);
             }
         }
     }

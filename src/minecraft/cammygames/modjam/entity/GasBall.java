@@ -28,7 +28,7 @@ public class GasBall extends EntitySmallFireball
     public GasBall(World world, double x, double y, double z, double xDirection, double yDirection, double zDirection) 
     {
         super(world, x, y, z, xDirection, yDirection, zDirection);
-
+        
 
         double d6 = (double) MathHelper.sqrt_double(xDirection * xDirection + yDirection * yDirection + zDirection * zDirection);
         this.accelerationX = xDirection / d6 * 0.05D;
@@ -65,46 +65,70 @@ public class GasBall extends EntitySmallFireball
     }
 
     /**
-     * Called when fireball hits a block or entity.
+     * Called when gasball hits a block or entity.
      */
     @Override
     protected void onImpact(MovingObjectPosition movingObjectPosition) 
     {
-    	 int x = movingObjectPosition.blockX;
-         int y = movingObjectPosition.blockY;
-         int z = movingObjectPosition.blockZ;
+    	if (!this.worldObj.isRemote) 
+        {
+            if (movingObjectPosition.entityHit != null) 
+            {
+                if (!movingObjectPosition.entityHit.isImmuneToFire() && movingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeFireballDamage(this, this.shootingEntity), (int) this.damage))
+                {
+                	for(int g = 0; g < 20; g++) 
+                	 	for(int i = 0; i < 10; i++)
+                                 worldObj.spawnParticle("largesmoke", posX + rand.nextGaussian(), posY + rand.nextGaussian(), posZ + rand.nextGaussian(), 0F, 0F, 0F);
 
-         switch (movingObjectPosition.sideHit) 
-         {
-             case 0:
-                 --y;
-                 break;
-             case 1:
-                 ++y;
-                 break;
-             case 2:
-                 --z;
-                 break;
-             case 3:
-                 ++z;
-                 break;
-             case 4:
-                 --x;
-                 break;
-             case 5:
-                 ++x;
-         }
-    	
-         if(worldObj.isRemote)
-         {
-                 if(!detonated)
-                 {	
-                	 for(int g = 0; g < 20; g++) 
+                    if (movingObjectPosition.entityHit instanceof EntityLiving)
+                    {
+                        if (this.knockbackStrength > 0)
+                        {
+                            double knockback = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+
+                            if (knockback > 0.0F) 
+                            {
+                                movingObjectPosition.entityHit.addVelocity(this.motionX * this.knockbackStrength * 0.6000000238418579D / knockback, 0.1D, this.motionZ * this.knockbackStrength * 0.6000000238418579D / knockback);
+                            }
+                        }
+                    }
+                }
+            } 
+            else 
+            {
+                int x = movingObjectPosition.blockX;
+                int y = movingObjectPosition.blockY;
+                int z = movingObjectPosition.blockZ;
+
+                switch (movingObjectPosition.sideHit) 
+                {
+                    case 0:
+                        --y;
+                        break;
+                    case 1:
+                        ++y;
+                        break;
+                    case 2:
+                        --z;
+                        break;
+                    case 3:
+                        ++z;
+                        break;
+                    case 4:
+                        --x;
+                        break;
+                    case 5:
+                        ++x;
+                }
+
+                if (this.worldObj.isAirBlock(x, y, z)) 
+                {
+                	for(int g = 0; g < 20; g++) 
                 	 	for(int i = 0; i < 10; i++)
                                  worldObj.spawnParticle("largesmoke", posX + rand.nextGaussian(), posY + rand.nextGaussian(), posZ + rand.nextGaussian(), 0F, 0F, 0F);
                 }
-         }
-         
+            }
+        }
     }
 
     /**
