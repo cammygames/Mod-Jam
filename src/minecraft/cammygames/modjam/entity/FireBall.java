@@ -58,142 +58,146 @@ public class FireBall extends EntitySmallFireball
     @Override
     public void onUpdate()
     {
-    	super.onUpdate();
-        if (!this.worldObj.isRemote && (this.shootingEntity != null && this.shootingEntity.isDead || !this.worldObj.blockExists((int)this.posX, (int)this.posY, (int)this.posZ)))
+
+		super.onUpdate();
+		this.setFire(1);
+		
+		if (this.inGround)
+		{
+			int i = this.worldObj.getBlockId(this.xTile, this.yTile, this.zTile);
+		
+			if (i == this.inTile)
+			{
+				++this.ticksAlive;
+				this.worldObj.setBlock((int)this.posX, (int)this.posY, (int)this.posZ, Block.fire.blockID);
+			
+				if (this.ticksAlive == 600)
+				{
+					if (this.worldObj.isAirBlock((int)this.posX, (int)this.posY, (int)this.posZ))
+			        {
+			        	this.worldObj.setBlock((int)this.posX,(int)this.posY,(int)this.posZ, Block.fire.blockID);
+			        	this.setDead();
+			        }
+				}
+			
+				return;
+			}
+		
+			this.inGround = false;
+			this.motionX *= (double)(this.rand.nextFloat() * 0.2F);
+			this.motionY *= (double)(this.rand.nextFloat() * 0.2F);
+			this.motionZ *= (double)(this.rand.nextFloat() * 0.2F);
+			this.ticksAlive = 0;
+			this.ticksInAir = 0;
+		}
+		else
+		{
+			++this.ticksInAir;
+		}
+		
+		Vec3 vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ);
+		Vec3 vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+		MovingObjectPosition movingobjectposition = this.worldObj.clip(vec3, vec31);
+		vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ);
+		vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+		
+		if (movingobjectposition != null)
+		{
+			vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+		}
+		
+		Entity entity = null;
+		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+		double d0 = 0.0D;
+		
+		for (int j = 0; j < list.size(); ++j)
+		{
+			Entity entity1 = (Entity)list.get(j);
+		
+			if (entity1.canBeCollidedWith() && (!entity1.isEntityEqual(this.shootingEntity) || this.ticksInAir >= 25))
+			{
+				float f = 0.3F;
+				AxisAlignedBB axisalignedbb = entity1.boundingBox.expand((double)f, (double)f, (double)f);
+				MovingObjectPosition movingobjectposition1 = axisalignedbb.calculateIntercept(vec3, vec31);
+		
+				if (movingobjectposition1 != null)
+				{
+					double d1 = vec3.distanceTo(movingobjectposition1.hitVec);
+					
+					if (d1 < d0 || d0 == 0.0D)
+					{
+						entity = entity1;
+						d0 = d1;
+					}
+				}
+			}
+		}
+		
+		if (entity != null)
+		{
+			movingobjectposition = new MovingObjectPosition(entity);
+		}
+		
+		if (movingobjectposition != null)
+		{
+			this.onImpact(movingobjectposition);
+		}
+		
+		this.posX += this.motionX;
+		this.posY += this.motionY;
+		this.posZ += this.motionZ;
+		float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+		this.rotationYaw = (float)(Math.atan2(this.motionZ, this.motionX) * 180.0D / Math.PI) + 90.0F;
+		
+		for (this.rotationPitch = (float)(Math.atan2((double)f1, this.motionY) * 180.0D / Math.PI) - 90.0F; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
+		{
+		;
+		}
+		
+		while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
+		{
+			this.prevRotationPitch += 360.0F;
+		}
+		
+		while (this.rotationYaw - this.prevRotationYaw < -180.0F)
+		{
+			this.prevRotationYaw -= 360.0F;
+		}
+		
+		while (this.rotationYaw - this.prevRotationYaw >= 180.0F)
+		{
+			this.prevRotationYaw += 360.0F;
+		}
+		
+		this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
+		this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
+		float f2 = this.getMotionFactor();
+		
+			if (this.isInWater())
+			{
+				for (int k = 0; k < 4; ++k)
+				{
+					float f3 = 0.25F;
+					this.worldObj.spawnParticle("bubble", this.posX - this.motionX * (double)f3, this.posY - this.motionY * (double)f3, this.posZ - this.motionZ * (double)f3, this.motionX, this.motionY, this.motionZ);
+				}
+		
+				f2 = 0.8F;
+		}
+		
+		this.motionX += this.accelerationX;
+		this.motionY += this.accelerationY;
+		this.motionZ += this.accelerationZ;
+		this.motionX *= (double)f2;
+		this.motionY *= (double)f2;
+		this.motionZ *= (double)f2;
+		this.worldObj.spawnParticle("smoke", this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
+		this.setPosition(this.posX, this.posY, this.posZ);
+        
+		if (this.worldObj.isAirBlock((int)this.posX, (int)this.posY, (int)this.posZ))
         {
-            this.setDead();
+        	this.worldObj.setBlock((int)this.posX,(int)this.posY,(int)this.posZ, Block.fire.blockID);
         }
-        else
-        {
-            super.onUpdate();
-            this.setFire(1);
-
-            if (this.inGround)
-            {
-                int i = this.worldObj.getBlockId(this.xTile, this.yTile, this.zTile);
-
-                if (i == this.inTile)
-                {
-                    ++this.ticksAlive;
-
-                    if (this.ticksAlive == 600)
-                    {
-                        //this.setDead();
-                    }
-
-                    return;
-                }
-
-                this.inGround = false;
-                this.motionX *= (double)(this.rand.nextFloat() * 0.2F);
-                this.motionY *= (double)(this.rand.nextFloat() * 0.2F);
-                this.motionZ *= (double)(this.rand.nextFloat() * 0.2F);
-                this.ticksAlive = 0;
-                this.ticksInAir = 0;
-            }
-            else
-            {
-                ++this.ticksInAir;
-            }
-
-            Vec3 vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ);
-            Vec3 vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            MovingObjectPosition movingobjectposition = this.worldObj.clip(vec3, vec31);
-            vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ);
-            vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-
-            if (movingobjectposition != null)
-            {
-                vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
-            }
-
-            Entity entity = null;
-            List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
-            double d0 = 0.0D;
-
-            for (int j = 0; j < list.size(); ++j)
-            {
-                Entity entity1 = (Entity)list.get(j);
-
-                if (entity1.canBeCollidedWith() && (!entity1.isEntityEqual(this.shootingEntity) || this.ticksInAir >= 25))
-                {
-                    float f = 0.3F;
-                    AxisAlignedBB axisalignedbb = entity1.boundingBox.expand((double)f, (double)f, (double)f);
-                    MovingObjectPosition movingobjectposition1 = axisalignedbb.calculateIntercept(vec3, vec31);
-
-                    if (movingobjectposition1 != null)
-                    {
-                        double d1 = vec3.distanceTo(movingobjectposition1.hitVec);
-
-                        if (d1 < d0 || d0 == 0.0D)
-                        {
-                            entity = entity1;
-                            d0 = d1;
-                        }
-                    }
-                }
-            }
-
-            if (entity != null)
-            {
-                movingobjectposition = new MovingObjectPosition(entity);
-            }
-
-            if (movingobjectposition != null)
-            {
-                this.onImpact(movingobjectposition);
-            }
-
-            this.posX += this.motionX;
-            this.posY += this.motionY;
-            this.posZ += this.motionZ;
-            float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-            this.rotationYaw = (float)(Math.atan2(this.motionZ, this.motionX) * 180.0D / Math.PI) + 90.0F;
-
-            for (this.rotationPitch = (float)(Math.atan2((double)f1, this.motionY) * 180.0D / Math.PI) - 90.0F; this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
-            {
-                ;
-            }
-
-            while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
-            {
-                this.prevRotationPitch += 360.0F;
-            }
-
-            while (this.rotationYaw - this.prevRotationYaw < -180.0F)
-            {
-                this.prevRotationYaw -= 360.0F;
-            }
-
-            while (this.rotationYaw - this.prevRotationYaw >= 180.0F)
-            {
-                this.prevRotationYaw += 360.0F;
-            }
-
-            this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
-            this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
-            float f2 = this.getMotionFactor();
-
-            if (this.isInWater())
-            {
-                for (int k = 0; k < 4; ++k)
-                {
-                    float f3 = 0.25F;
-                    this.worldObj.spawnParticle("bubble", this.posX - this.motionX * (double)f3, this.posY - this.motionY * (double)f3, this.posZ - this.motionZ * (double)f3, this.motionX, this.motionY, this.motionZ);
-                }
-
-                f2 = 0.8F;
-            }
-
-            this.motionX += this.accelerationX;
-            this.motionY += this.accelerationY;
-            this.motionZ += this.accelerationZ;
-            this.motionX *= (double)f2;
-            this.motionY *= (double)f2;
-            this.motionZ *= (double)f2;
-            this.worldObj.spawnParticle("smoke", this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
-            this.setPosition(this.posX, this.posY, this.posZ);
-        }
+		
     }
     
     /**

@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
@@ -12,6 +11,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import cammygames.modjam.WarDefence;
+import cammygames.modjam.entity.FireBall;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -99,7 +99,7 @@ public class WDFlameThrower  extends Item
 			double y = player.posY-0.30;
 			double z = player.posZ-0.1;
 	
-			EntitySmallFireball fireball = new EntitySmallFireball(world, x, y, z, xDirection, yDirection, zDirection);		
+			FireBall fireball = new FireBall(world, x, y, z, xDirection, yDirection, zDirection);		
 			
 			player.inventory.consumeInventoryItem(Item.fireballCharge.itemID);
 	    	world.spawnParticle("smoke", player.posX+1, player.posY-1, player.posZ-2, 0.0D, 0.0D, 0.0D);
