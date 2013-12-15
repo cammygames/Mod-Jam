@@ -10,13 +10,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-/**
- * FireGun mod
- *
- * @author NightKosh
- * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
- */
-public class FireBall extends EntitySmallFireball {
+public class FireBall extends EntitySmallFireball 
+{
 
     private double damage = 5;
     /**
