@@ -72,61 +72,42 @@ public class GasBall extends EntitySmallFireball
     {
     	if (!this.worldObj.isRemote) 
         {
-            if (movingObjectPosition.entityHit != null) 
+	    	for(int g = 0; g < 20; g++) 
+	    	 	for(int i = 0; i < 10; i++)
+	                     worldObj.spawnParticle("largesmoke", posX + rand.nextGaussian(), posY + rand.nextGaussian(), posZ + rand.nextGaussian(), 0F, 0F, 0F);
+        } 
+        else 
+        {
+            int x = movingObjectPosition.blockX;
+            int y = movingObjectPosition.blockY;
+            int z = movingObjectPosition.blockZ;
+
+            switch (movingObjectPosition.sideHit) 
             {
-                if (!movingObjectPosition.entityHit.isImmuneToFire() && movingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeFireballDamage(this, this.shootingEntity), (int) this.damage))
-                {
-                	for(int g = 0; g < 20; g++) 
-                	 	for(int i = 0; i < 10; i++)
-                                 worldObj.spawnParticle("largesmoke", posX + rand.nextGaussian(), posY + rand.nextGaussian(), posZ + rand.nextGaussian(), 0F, 0F, 0F);
+                case 0:
+                    --y;
+                    break;
+                case 1:
+                    ++y;
+                    break;
+                case 2:
+                    --z;
+                    break;
+                case 3:
+                    ++z;
+                    break;
+                case 4:
+                    --x;
+                    break;
+                case 5:
+                    ++x;
+            }
 
-                    if (movingObjectPosition.entityHit instanceof EntityLiving)
-                    {
-                        if (this.knockbackStrength > 0)
-                        {
-                            double knockback = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-
-                            if (knockback > 0.0F) 
-                            {
-                                movingObjectPosition.entityHit.addVelocity(this.motionX * this.knockbackStrength * 0.6000000238418579D / knockback, 0.1D, this.motionZ * this.knockbackStrength * 0.6000000238418579D / knockback);
-                            }
-                        }
-                    }
-                }
-            } 
-            else 
+            if (this.worldObj.isAirBlock(x, y, z)) 
             {
-                int x = movingObjectPosition.blockX;
-                int y = movingObjectPosition.blockY;
-                int z = movingObjectPosition.blockZ;
-
-                switch (movingObjectPosition.sideHit) 
-                {
-                    case 0:
-                        --y;
-                        break;
-                    case 1:
-                        ++y;
-                        break;
-                    case 2:
-                        --z;
-                        break;
-                    case 3:
-                        ++z;
-                        break;
-                    case 4:
-                        --x;
-                        break;
-                    case 5:
-                        ++x;
-                }
-
-                if (this.worldObj.isAirBlock(x, y, z)) 
-                {
-                	for(int g = 0; g < 20; g++) 
-                	 	for(int i = 0; i < 10; i++)
-                                 worldObj.spawnParticle("largesmoke", posX + rand.nextGaussian(), posY + rand.nextGaussian(), posZ + rand.nextGaussian(), 0F, 0F, 0F);
-                }
+            	for(int g = 0; g < 20; g++) 
+            	 	for(int i = 0; i < 10; i++)
+                             worldObj.spawnParticle("largesmoke", posX + rand.nextGaussian(), posY + rand.nextGaussian(), posZ + rand.nextGaussian(), 0F, 0F, 0F);
             }
         }
     }
