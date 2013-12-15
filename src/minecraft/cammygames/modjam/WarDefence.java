@@ -110,6 +110,9 @@ public class WarDefence
         //				    CRAFTING				   \\
         //--------------------------------------------\\
         GameRegistry.addRecipe(new ItemStack(flameThrower, 1), new Object[] { "R  ", "CBC", "ACA", 'A', Item.ingotIron, 'C', KevlarFiber, 'R', Item.diamond , 'B', Block.blockRedstone});
+        GameRegistry.addRecipe(new ItemStack(gasThrower, 1), new Object[] { "R  ", "CBC", "ACA", 'A', Item.ingotIron, 'C', Item.leather, 'R', Item.diamond , 'B', Block.blockRedstone});
+        GameRegistry.addRecipe(new ItemStack(compGas, 1), new Object[] { "TTT ", "TBT ", "TTT",'T', Item.ghastTear, 'B',Item.glassBottle });
+        
         GameRegistry.addRecipe(new ItemStack(barbedwire, 12), new Object[] { "AAA", "BBB", "AAA", 'A', Item.ingotIron, 'B', Item.flint });
         GameRegistry.addRecipe(new ItemStack(Gel, 1), new Object[] { "TT ", "TT ", 'T', Item.slimeBall });
         GameRegistry.addRecipe(new ItemStack(KevlarFiber, 1), new Object[] {"TGT", "GTG ", "TGT", 'T', Block.fenceIron, 'G', WarDefence.Gel });
@@ -122,6 +125,8 @@ public class WarDefence
         GameRegistry.addRecipe(new ItemStack(BombWall, 4), "xxx", "xyx", "xxx", 'x', Item.ingotIron, 'y', concrete);
         GameRegistry.addRecipe(new ItemStack(BombWall2, 4), "xxx", "dyd", "xxx", 'x', Block.fenceIron, 'y', BombWall, 'd', Block.stone);
         GameRegistry.addRecipe(new ItemStack(BombWall3, 4), "xdx", "gyg", "xdx", 'x', Block.fenceIron, 'y', BombWall2, 'g', Item.ingotGold, 'd', Item.diamond);
+       
+        
         GameRegistry.addRecipe(new ItemStack(Armor.GhillieBody, 1), new Object[] { "A A", "ABA", "AAA", 'A', WarDefence.camosegment, 'B', WarDefence.KevlarFiber });
         GameRegistry.addRecipe(new ItemStack(Armor.GhillieHelmet, 1), new Object[] { "AAA", "ABA", 'A', WarDefence.camosegment, 'B', WarDefence.KevlarFiber });
         GameRegistry.addRecipe(new ItemStack(Armor.GhillieLegs, 1), new Object[] { "AAA", "ABA", "A A", 'A', WarDefence.camosegment, 'B', WarDefence.KevlarFiber });
