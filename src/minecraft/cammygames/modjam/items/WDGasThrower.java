@@ -3,21 +3,17 @@ package cammygames.modjam.items;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 import cammygames.modjam.WarDefence;
-import cammygames.modjam.entity.GasBall;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -38,11 +34,16 @@ public class WDGasThrower extends ItemBow
 		}
 	}
 	
+	private Icon loadedIcon;
+	private Icon emptyIcon;
+	
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
-    	this.itemIcon = iconRegister.registerIcon("WarDefence:gasthrower");
+    	this.loadedIcon = iconRegister.registerIcon("WarDefence:gasthrower");
+    	this.emptyIcon = iconRegister.registerIcon("WarDefence:gasthrower-empty");
+    	this.itemIcon = emptyIcon;
     }
 	
 	private final EnumToolMaterial toolMaterial;
@@ -75,6 +76,7 @@ public class WDGasThrower extends ItemBow
 
 			if(player.inventory.hasItem(WarDefence.compGas.itemID))
 			{
+				this.itemIcon = loadedIcon;
 				player.inventory.consumeInventoryItem(WarDefence.compGas.itemID);
 				
 				if (flag)
@@ -88,6 +90,19 @@ public class WDGasThrower extends ItemBow
 					target.motionX = (target.posX - player.posX) * 2;
 					target.motionZ = (target.posZ - player.posZ) * 2;
 				}
+			}
+			
+			if(player.inventory.hasItem(WarDefence.compGas.itemID))
+			{
+				this.itemIcon = loadedIcon;	
+			}
+			else if(!player.inventory.hasItem(WarDefence.compGas.itemID))
+			{
+				this.itemIcon = emptyIcon;	
+			}
+			else 
+			{
+				
 			}
 			
 			itemstack.setItemDamage(0);
