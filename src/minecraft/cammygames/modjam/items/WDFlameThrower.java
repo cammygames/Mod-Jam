@@ -11,6 +11,7 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
@@ -22,18 +23,31 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class WDFlameThrower extends ItemBow
 {
+	private Icon loadedIcon;
+	private Icon emptyIcon;
+	
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
-		list.add("Burn Baby Burn !");
-		list.add("Uses Fire Charges");
+		if(!player.inventory.hasItem(Item.fireballCharge.itemID))
+		{
+			this.itemIcon = emptyIcon;
+			list.add("Requires Fire Charges");
+		}
+		else
+		{
+			this.itemIcon = loadedIcon;
+		}
+			list.add("Burn Baby Burn!");
 	}
 	
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
-        this.itemIcon = iconRegister.registerIcon("WarDefence:flameThrower");
+    	this.loadedIcon = iconRegister.registerIcon("WarDefence:flamethrower");
+    	this.emptyIcon = iconRegister.registerIcon("WarDefence:flamethrower-empty");
+    	this.itemIcon = emptyIcon;
 
     }
 	

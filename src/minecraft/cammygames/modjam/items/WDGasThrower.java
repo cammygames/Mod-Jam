@@ -20,22 +20,26 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class WDGasThrower extends ItemBow
 {
 	private boolean flag = false;
+	private Icon loadedIcon;
+	private Icon emptyIcon;
 	
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{	
 		if(!player.inventory.hasItem(WarDefence.compGas.itemID))
 		{
+			this.itemIcon = emptyIcon;
 			list.add("Requires Compressed Gas");
 		}
-		if(!player.isSneaking())
+		else
 		{
-			list.add("Sneak To Blow The Entity Further Away!");
+			this.itemIcon = loadedIcon;
 		}
+			list.add("Sneak To Blow The Entity Further Away!");
+
 	}
 	
-	private Icon loadedIcon;
-	private Icon emptyIcon;
+
 	
     @Override
     @SideOnly(Side.CLIENT)
@@ -76,7 +80,7 @@ public class WDGasThrower extends ItemBow
 
 			if(player.inventory.hasItem(WarDefence.compGas.itemID))
 			{
-				this.itemIcon = loadedIcon;
+				
 				player.inventory.consumeInventoryItem(WarDefence.compGas.itemID);
 				
 				if (flag)
@@ -92,18 +96,7 @@ public class WDGasThrower extends ItemBow
 				}
 			}
 			
-			if(player.inventory.hasItem(WarDefence.compGas.itemID))
-			{
-				this.itemIcon = loadedIcon;	
-			}
-			else if(!player.inventory.hasItem(WarDefence.compGas.itemID))
-			{
-				this.itemIcon = emptyIcon;	
-			}
-			else 
-			{
-				
-			}
+			//
 			
 			itemstack.setItemDamage(0);
 
