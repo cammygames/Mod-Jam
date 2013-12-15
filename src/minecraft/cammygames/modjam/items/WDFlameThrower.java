@@ -35,6 +35,7 @@ public class WDFlameThrower  extends Item
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
 	{
+		this.itemIcon = iconRegister.registerIcon("WarDefence:flameThrower");
         particleIcon = iconRegister.registerIcon("WarDefence:flames");
     }
 	

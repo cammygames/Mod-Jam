@@ -4,12 +4,13 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntitySmokeFX;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import cammygames.modjam.client.particle.EntityFireWallFX;
+import cammygames.modjam.client.particle.Particles;
 
 public class FireBall extends EntitySmallFireball
 {
@@ -22,7 +23,8 @@ public class FireBall extends EntitySmallFireball
     private int knockbackStrength;
     private boolean isExplosive;
     public int explosionPower = 1;
-
+    public Particles part;
+    
     public FireBall(World world, double x, double y, double z, double xDirection, double yDirection, double zDirection) 
     {
         super(world, x, y, z, xDirection, yDirection, zDirection);
@@ -66,7 +68,7 @@ public class FireBall extends EntitySmallFireball
      * Called when fireball hits a block or entity.
      */
     @Override
-    protected void onImpact(MovingObjectPosition movingObjectPosition) 
+    public void onImpact(MovingObjectPosition movingObjectPosition) 
     {
             int x = movingObjectPosition.blockX;
             int y = movingObjectPosition.blockY;
@@ -97,7 +99,10 @@ public class FireBall extends EntitySmallFireball
             {
             	this.worldObj.playSoundEffect((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
             	this.worldObj.setBlock(x, y, z, Block.fire.blockID);
-            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntitySmokeFX(this.worldObj,(double)x,(double)y,(double)z,0,0,0) );
+            	for (int i =0;i < 20;i++){
+            		part.FLAME.spawnParticle(this.worldObj, x, y, z, 0, 0, 0);
+            	}
+            	//Minecraft.getMinecraft().effectRenderer.addEffect(new EntityFireWallFX(this.worldObj,(double)x,(double)y,(double)z,0,0,0) );
             }
     }
 

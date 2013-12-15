@@ -11,6 +11,21 @@ public class EntityFireWallFX extends EntityFX
 	{
 		super(w, x, y, z, Mx, My, Mz);
 		this.setParticleIcon(WDFlameThrower.particleIcon);
+		
+		particleScale = 6;
 	}
 
+	@Override
+	public void onUpdate()
+	{
+		super.onUpdate();
+		particleScale = (1- (float)particleAge / particleMaxAge) *3;
+	}
+	
+	@Override
+	public int getFXLayer()
+	{
+		return 2;
+	}
+	
 }
