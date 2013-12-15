@@ -29,6 +29,10 @@ public class WDGasThrower extends ItemBow
 		{
 			list.add("Requires Compressed Gas");
 		}
+		if(!player.isSneaking())
+		{
+			list.add("Sneak To Blow The Entity Further Away!");
+		}
 	}
 	
     @Override
@@ -68,8 +72,17 @@ public class WDGasThrower extends ItemBow
 
 			if(!player.inventory.hasItem(WarDefence.compGas.itemID))
 			{
-				target.motionX = (target.posX - player.posX) * 2;
-				target.motionZ = (target.posZ - player.posZ) * 2;
+				if (player.isSneaking())
+				{
+					target.motionX = (target.posX - player.posX) * 2;
+					target.motionZ = (target.posZ - player.posZ) * 2;
+					target.motionY = (target.posX - player.posZ) * 2;
+				}
+				else
+				{
+					target.motionX = (target.posX - player.posX) * 2;
+					target.motionZ = (target.posZ - player.posZ) * 2;
+				}
 			}
 			
 			itemstack.setItemDamage(0);

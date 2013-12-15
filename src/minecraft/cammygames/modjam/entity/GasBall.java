@@ -65,17 +65,6 @@ public class GasBall extends EntitySmallFireball
     }
 
     /**
-     * Called when gasball hits a block or entity.
-     */
-    @Override
-    protected void onImpact(MovingObjectPosition movingObjectPosition) 
-    {
-	    	for(int g = 0; g < 20; g++) 
-	    	 	for(int i = 0; i < 10; i++)
-	                     worldObj.spawnParticle("largesmoke", posX + rand.nextGaussian(), posY + rand.nextGaussian(), posZ + rand.nextGaussian(), 0F, 0F, 0F);
-    }
-
-    /**
      * Protected helper method to write subclass entity data to NBT.
      */
     @Override

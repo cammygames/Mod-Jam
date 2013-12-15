@@ -104,7 +104,7 @@ public class WarDefence
 			KevlarFiber = new WarDefenceItems(ITEM_ID_PREFIX + 4).setUnlocalizedName("KevlarFiber").setTextureName("WarDefence:Kevlar");
 			flameThrower = new WDFlameThrower(ITEM_ID_PREFIX + 5).setUnlocalizedName("flameThrower").setTextureName("WarDefence:flameThrower");
 			gasThrower = new WDGasThrower(ITEM_ID_PREFIX + 27).setUnlocalizedName("gasThrower").setTextureName("WarDefence:flameThrower");
-			compGas = new WarDefenceItems(ITEM_ID_PREFIX + 28).setUnlocalizedName("compGas").setTextureName("WarDefence:compGas");    
+			compGas = new WarDefenceItems(ITEM_ID_PREFIX + 28).setUnlocalizedName("compGas").setTextureName("WarDefence:compGas").setMaxStackSize(1);    
 			
 			
 	        LanguageRegistry.addName(Gel, "Ballistics Gel");
@@ -114,7 +114,7 @@ public class WarDefence
 	    	LanguageRegistry.addName(KevlarPlate, "Kevlar Plate");   
 	    	LanguageRegistry.addName(KevlarFiber, "Kevlar Fiber");  
 	    	LanguageRegistry.addName(flameThrower, "Flame Thrower"); 
-	    	LanguageRegistry.addName(gasThrower, "Gas Thrower"); 
+	    	LanguageRegistry.addName(gasThrower, "Entity Blaster"); 
 	    	
          //--------------------------------------------\\
          //				    CRAFTING				   \\
