@@ -10,18 +10,18 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class WarDefenceKnife  extends ItemSword
 {
-	public static EnumToolMaterial EnumToolMaterialKnife = EnumHelper.addToolMaterial("HighPower", 0, 750, 0.2F, 8, 15);
+    public static EnumToolMaterial EnumToolMaterialKnife = EnumHelper.addToolMaterial("HighPower", 0, 750, 0.2F, 8, 15);
 
-	public WarDefenceKnife(int ItemID, EnumToolMaterial material)
-	{
-		super(ItemID, EnumToolMaterialKnife );
-		this.setCreativeTab(WarDefence.WarDefenceItems);
-	}
+    public WarDefenceKnife(int ItemID, EnumToolMaterial material)
+    {
+        super(ItemID, EnumToolMaterialKnife);
+        this.setCreativeTab(WarDefence.WarDefenceItems);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister)
-	{
-	    this.itemIcon = iconRegister.registerIcon("WarDefence:knife");
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister iconRegister)
+    {
+        this.itemIcon = iconRegister.registerIcon("WarDefence:knife");
+    }
 }

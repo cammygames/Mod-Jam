@@ -19,44 +19,41 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class WDGasThrower extends ItemBow
 {
-	private boolean flag = false;
-	private Icon loadedIcon;
-	private Icon emptyIcon;
-	
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{	
-		if(!player.inventory.hasItem(WarDefence.compGas.itemID))
-		{
-			this.itemIcon = emptyIcon;
-			list.add("Requires Compressed Gas");
-		}
-		else
-		{
-			this.itemIcon = loadedIcon;
-		}
-			list.add("Sneak To Blow The Entity Further Away!");
+    private boolean flag = false;
+    private Icon loadedIcon;
+    private Icon emptyIcon;
 
-	}
-	
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
+        if (!player.inventory.hasItem(WarDefence.compGas.itemID))
+        {
+            this.itemIcon = emptyIcon;
+            list.add("Requires Compressed Gas");
+        }
+        else
+        {
+            this.itemIcon = loadedIcon;
+        }
 
-	
+        list.add("Sneak To Blow The Entity Further Away!");
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
-    	this.loadedIcon = iconRegister.registerIcon("WarDefence:gasthrower");
-    	this.emptyIcon = iconRegister.registerIcon("WarDefence:gasthrower-empty");
-    	this.itemIcon = emptyIcon;
+        this.loadedIcon = iconRegister.registerIcon("WarDefence:gasthrower");
+        this.emptyIcon = iconRegister.registerIcon("WarDefence:gasthrower-empty");
+        this.itemIcon = emptyIcon;
     }
-	
-	private final EnumToolMaterial toolMaterial;
 
-    public WDGasThrower(int par1) 
+    private final EnumToolMaterial toolMaterial;
+
+    public WDGasThrower(int par1)
     {
         super(par1);
         this.setMaxDamage(1500);
-
         this.toolMaterial = EnumToolMaterial.EMERALD;
         this.setCreativeTab(WarDefence.WarDefenceItems);
     }
@@ -66,57 +63,54 @@ public class WDGasThrower extends ItemBow
      * world, entityplayer, itemInUseCount
      */
     @Override
-    public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int par4) 
+    public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int par4)
     {
     }
 
-
     @Override
-	public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase target) 
+    public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase target)
     {
-		if (!target.worldObj.isRemote) 
-		{
-			target.motionY = 2;
+        if (!target.worldObj.isRemote)
+        {
+            target.motionY = 2;
 
-			if(player.inventory.hasItem(WarDefence.compGas.itemID))
-			{
-				
-				player.inventory.consumeInventoryItem(WarDefence.compGas.itemID);
-				
-				if (flag)
-				{
-					target.motionX = (target.posX - player.posZ) * 4;
-					target.motionZ = (target.posZ - player.posX) * 4;
-					System.out.println("SNEAKING");
-				}
-				else
-				{
-					target.motionX = (target.posX - player.posX) * 2;
-					target.motionZ = (target.posZ - player.posZ) * 2;
-				}
-			}
-			
-			//
-			
-			itemstack.setItemDamage(0);
+            if (player.inventory.hasItem(WarDefence.compGas.itemID))
+            {
+                player.inventory.consumeInventoryItem(WarDefence.compGas.itemID);
 
-		}
-		else
-		{
-			itemstack.setItemDamage(itemstack.getItemDamage() + 1);
-		}
-			
-		return false;	
-	}
-    
+                if (flag)
+                {
+                    target.motionX = (target.posX - player.posZ) * 4;
+                    target.motionZ = (target.posZ - player.posX) * 4;
+                    System.out.println("SNEAKING");
+                }
+                else
+                {
+                    target.motionX = (target.posX - player.posX) * 2;
+                    target.motionZ = (target.posZ - player.posZ) * 2;
+                }
+            }
+
+            //
+            itemstack.setItemDamage(0);
+        }
+        else
+        {
+            itemstack.setItemDamage(itemstack.getItemDamage() + 1);
+        }
+
+        return false;
+    }
+
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) 
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
         ArrowNockEvent event = new ArrowNockEvent(player, itemStack);
         MinecraftForge.EVENT_BUS.post(event);
+
         if (event.isCanceled())
         {
             return event.result;
@@ -158,5 +152,4 @@ public class WDGasThrower extends ItemBow
     {
         return this.toolMaterial.getToolCraftingMaterial() == itemStack2.itemID ? true : super.getIsRepairable(itemStack, itemStack2);
     }
-    
 }

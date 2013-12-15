@@ -7,19 +7,19 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class WDItems extends CreativeTabs
 {
-	   public WDItems(int par1, String par2Str)
-	   {
-		   super(par1, par2Str);
-	   }
-	 
-	   @SideOnly(Side.CLIENT)
-	   public int getTabIconItemIndex()
-	   {
-		   return WarDefence.Knife.itemID;
-	   }
-	 
-	   public String getTranslatedTabLabel()
-	   {
-		   return "WarDefence: Items";
-	   }
+    public WDItems(int par1, String par2Str)
+    {
+        super(par1, par2Str);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getTabIconItemIndex()
+    {
+        return WarDefence.Knife.itemID;
+    }
+
+    public String getTranslatedTabLabel()
+    {
+        return "WarDefence: Items";
+    }
 }

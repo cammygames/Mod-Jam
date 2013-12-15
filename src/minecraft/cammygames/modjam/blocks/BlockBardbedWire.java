@@ -14,47 +14,45 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockBardbedWire extends Block
 {
+    public BlockBardbedWire(int par1, Material par2Material)
+    {
+        super(par1, par2Material);
+        this.setCreativeTab(WarDefence.WarDefenceBlocks);
+    }
 
-	public BlockBardbedWire(int par1, Material par2Material) 
-	{
-		super(par1, par2Material);
-		this.setCreativeTab(WarDefence.WarDefenceBlocks);
-	}
-	
-	/**
-	 * Triggered whenever an entity collides with this block 
-	 */
+    /**
+     * Triggered whenever an entity collides with this block
+     */
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
     {
         entity.setInWeb();
-    	entity.attackEntityFrom(DamageSource.cactus, 1);
+        entity.attackEntityFrom(DamageSource.cactus, 1);
     }
 
-	@Override
+    @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
-	{
+    {
         this.blockIcon = iconRegister.registerIcon("WarDefence:barbedwire");
     }
-	
+
     public boolean isOpaqueCube()
     {
         return false;
     }
-    
+
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
     {
         return null;
     }
-    
+
     public int getRenderType()
     {
         return 1;
     }
-    
+
     public boolean renderAsNormalBlock()
     {
         return false;
     }
-   
 }

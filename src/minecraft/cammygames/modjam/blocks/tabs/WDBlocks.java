@@ -7,19 +7,19 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class WDBlocks extends CreativeTabs
 {
-	   public WDBlocks(int par1, String par2Str)
-	   {
-		   super(par1, par2Str);
-	   }
-	 
-	   @SideOnly(Side.CLIENT)
-	   public int getTabIconItemIndex()
-	   {
-		   return WarDefence.barbedwire.blockID;
-	   }
-	 
-	   public String getTranslatedTabLabel()
-	   {
-		   return "WarDefence: Blocks";
-	   }
+    public WDBlocks(int par1, String par2Str)
+    {
+        super(par1, par2Str);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getTabIconItemIndex()
+    {
+        return WarDefence.barbedwire.blockID;
+    }
+
+    public String getTranslatedTabLabel()
+    {
+        return "WarDefence: Blocks";
+    }
 }

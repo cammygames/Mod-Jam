@@ -1,9 +1,8 @@
 package cammygames.modjam;
 
-public class ServerProxy 
+public class ServerProxy
 {
-	public void registerRenderers() 
-	{
-
-	}
+    public void registerRenderers()
+    {
+    }
 }

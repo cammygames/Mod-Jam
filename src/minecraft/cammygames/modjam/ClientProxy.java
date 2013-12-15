@@ -1,6 +1,5 @@
 package cammygames.modjam;
 
-public class ClientProxy extends ServerProxy 
+public class ClientProxy extends ServerProxy
 {
-
 }

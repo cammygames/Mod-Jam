@@ -7,19 +7,19 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class WDArmour extends CreativeTabs
 {
-	   public WDArmour(int par1, String par2Str)
-	   {
-		   super(par1, par2Str);
-	   }
-	 
-	   @SideOnly(Side.CLIENT)
-	   public int getTabIconItemIndex()
-	   {
-		   return Armor.SantaHelmet.itemID;
-	   }
-	 
-	   public String getTranslatedTabLabel()
-	   {
-		   return "WarDefence: Armour";
-	   }
+    public WDArmour(int par1, String par2Str)
+    {
+        super(par1, par2Str);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getTabIconItemIndex()
+    {
+        return Armor.SantaHelmet.itemID;
+    }
+
+    public String getTranslatedTabLabel()
+    {
+        return "WarDefence: Armour";
+    }
 }

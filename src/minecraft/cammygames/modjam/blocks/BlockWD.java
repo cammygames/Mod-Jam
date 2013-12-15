@@ -10,17 +10,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockWD extends Block
 {
+    public BlockWD(int par1, Material par2Material)
+    {
+        super(par1, par2Material);
+        this.setCreativeTab(WarDefence.WarDefenceBlocks);
+    }
 
-	public BlockWD(int par1, Material par2Material) 
-	{
-		super(par1, par2Material);
-		this.setCreativeTab(WarDefence.WarDefenceBlocks);
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister)
-	{
-		this.blockIcon = iconRegister.registerIcon(WarDefence.name+this.getUnlocalizedName());
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister iconRegister)
+    {
+        this.blockIcon = iconRegister.registerIcon(WarDefence.name + this.getUnlocalizedName());
+    }
 }

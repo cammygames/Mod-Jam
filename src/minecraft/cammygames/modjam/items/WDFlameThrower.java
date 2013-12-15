@@ -23,41 +23,40 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class WDFlameThrower extends ItemBow
 {
-	private Icon loadedIcon;
-	private Icon emptyIcon;
-	
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-		if(!player.inventory.hasItem(Item.fireballCharge.itemID))
-		{
-			this.itemIcon = emptyIcon;
-			list.add("Requires Fire Charges");
-		}
-		else
-		{
-			this.itemIcon = loadedIcon;
-		}
-			list.add("Burn Baby Burn!");
-	}
-	
+    private Icon loadedIcon;
+    private Icon emptyIcon;
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
+        if (!player.inventory.hasItem(Item.fireballCharge.itemID))
+        {
+            this.itemIcon = emptyIcon;
+            list.add("Requires Fire Charges");
+        }
+        else
+        {
+            this.itemIcon = loadedIcon;
+        }
+
+        list.add("Burn Baby Burn!");
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
-    	this.loadedIcon = iconRegister.registerIcon("WarDefence:flamethrower");
-    	this.emptyIcon = iconRegister.registerIcon("WarDefence:flamethrower-empty");
-    	this.itemIcon = emptyIcon;
-
+        this.loadedIcon = iconRegister.registerIcon("WarDefence:flamethrower");
+        this.emptyIcon = iconRegister.registerIcon("WarDefence:flamethrower-empty");
+        this.itemIcon = emptyIcon;
     }
-	
-	private final EnumToolMaterial toolMaterial;
 
-    public WDFlameThrower(int par1) 
+    private final EnumToolMaterial toolMaterial;
+
+    public WDFlameThrower(int par1)
     {
         super(par1);
         this.setMaxDamage(1500);
-
         this.toolMaterial = EnumToolMaterial.EMERALD;
         this.setCreativeTab(WarDefence.WarDefenceItems);
     }
@@ -71,8 +70,6 @@ public class WDFlameThrower extends ItemBow
     {
     }
 
-
-
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
@@ -81,12 +78,13 @@ public class WDFlameThrower extends ItemBow
     {
         ArrowNockEvent event = new ArrowNockEvent(player, itemStack);
         MinecraftForge.EVENT_BUS.post(event);
-        if (event.isCanceled()) 
+
+        if (event.isCanceled())
         {
             return event.result;
         }
 
-        if (player.capabilities.isCreativeMode || player.inventory.hasItem(Item.fireballCharge.itemID)) 
+        if (player.capabilities.isCreativeMode || player.inventory.hasItem(Item.fireballCharge.itemID))
         {
             player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
         }
@@ -103,16 +101,18 @@ public class WDFlameThrower extends ItemBow
      * continuously
      */
     @Override
-    public void onUsingItemTick(ItemStack itemStack, EntityPlayer player, int count) 
+    public void onUsingItemTick(ItemStack itemStack, EntityPlayer player, int count)
     {
-        if (count % 2 != 0) 
+        if (count % 2 != 0)
         {
             return;
         }
+
         World world = player.worldObj;
         ArrowNockEvent event = new ArrowNockEvent(player, itemStack);
         MinecraftForge.EVENT_BUS.post(event);
-        if (event.isCanceled()) 
+
+        if (event.isCanceled())
         {
             return;
         }
@@ -123,39 +123,36 @@ public class WDFlameThrower extends ItemBow
         }
 
         int j = this.getMaxItemUseDuration(itemStack) - 1;
-
         ArrowLooseEvent eventAr = new ArrowLooseEvent(player, itemStack, j);
         MinecraftForge.EVENT_BUS.post(eventAr);
-
         boolean flag = player.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, itemStack) > 0;
 
         if (flag || player.inventory.hasItem(Item.fireballCharge.itemID))
         {
             double yaw = Math.toRadians(player.rotationYaw);
             double pitch = Math.toRadians(player.rotationPitch);
-
             double xDirection = -Math.sin(yaw) * Math.cos(pitch);
             double yDirection = -Math.sin(pitch);
             double zDirection = Math.cos(yaw) * Math.cos(pitch);
-
             double x = player.posX + xDirection * 2;
             double y = player.posY + 1.5 + yDirection;
             double z = player.posZ + zDirection * 2;
-
             FireBall fireball = new FireBall(world, x, y, z, xDirection, yDirection, zDirection);
-
             int power = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, itemStack);
-            if (power > 0) 
+
+            if (power > 0)
             {
                 fireball.setDamage(fireball.getDamage() + (double) power * 0.5D + 0.5D);
-                if (power == 5) 
+
+                if (power == 5)
                 {
                     fireball.setExplosive(true);
                 }
             }
 
             int knockback = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, itemStack);
-            if (knockback > 0) 
+
+            if (knockback > 0)
             {
                 fireball.setKnockbackStrength(knockback);
             }
@@ -168,12 +165,12 @@ public class WDFlameThrower extends ItemBow
             itemStack.damageItem(1, player);
             world.playAuxSFX(1009, (int) x, (int) y, (int) z, 0);
 
-            if (!flag) 
+            if (!flag)
             {
                 player.inventory.consumeInventoryItem(Item.fireballCharge.itemID);
             }
 
-            if (!world.isRemote) 
+            if (!world.isRemote)
             {
                 world.spawnEntityInWorld(fireball);
             }
@@ -185,7 +182,7 @@ public class WDFlameThrower extends ItemBow
      * is being used
      */
     @Override
-    public EnumAction getItemUseAction(ItemStack par1ItemStack) 
+    public EnumAction getItemUseAction(ItemStack par1ItemStack)
     {
         return EnumAction.none;
     }

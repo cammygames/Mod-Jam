@@ -10,9 +10,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-public class FireBall extends EntitySmallFireball 
+public class FireBall extends EntitySmallFireball
 {
-
     private double damage = 5;
     /**
      * The amount of knockback an arrow applies when it hits a mob.
@@ -21,11 +20,9 @@ public class FireBall extends EntitySmallFireball
     private boolean isExplosive;
     public int explosionPower = 1;
 
-    public FireBall(World world, double x, double y, double z, double xDirection, double yDirection, double zDirection) 
+    public FireBall(World world, double x, double y, double z, double xDirection, double yDirection, double zDirection)
     {
         super(world, x, y, z, xDirection, yDirection, zDirection);
-
-
         double d6 = (double) MathHelper.sqrt_double(xDirection * xDirection + yDirection * yDirection + zDirection * zDirection);
         this.accelerationX = xDirection / d6 * 0.05D;
         this.accelerationY = yDirection / d6 * 0.05D;
@@ -69,11 +66,11 @@ public class FireBall extends EntitySmallFireball
      * Called when fireball hits a block or entity.
      */
     @Override
-    protected void onImpact(MovingObjectPosition movingObjectPosition) 
+    protected void onImpact(MovingObjectPosition movingObjectPosition)
     {
-        if (!this.worldObj.isRemote) 
+        if (!this.worldObj.isRemote)
         {
-            if (movingObjectPosition.entityHit != null) 
+            if (movingObjectPosition.entityHit != null)
             {
                 if (!movingObjectPosition.entityHit.isImmuneToFire() && movingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeFireballDamage(this, this.shootingEntity), (int) this.damage))
                 {
@@ -85,46 +82,50 @@ public class FireBall extends EntitySmallFireball
                         {
                             double knockback = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
-                            if (knockback > 0.0F) 
+                            if (knockback > 0.0F)
                             {
                                 movingObjectPosition.entityHit.addVelocity(this.motionX * this.knockbackStrength * 0.6000000238418579D / knockback, 0.1D, this.motionZ * this.knockbackStrength * 0.6000000238418579D / knockback);
                             }
                         }
                     }
                 }
-            } 
-            else 
+            }
+            else
             {
                 int x = movingObjectPosition.blockX;
                 int y = movingObjectPosition.blockY;
                 int z = movingObjectPosition.blockZ;
 
-                switch (movingObjectPosition.sideHit) 
+                switch (movingObjectPosition.sideHit)
                 {
                     case 0:
                         --y;
                         break;
+
                     case 1:
                         ++y;
                         break;
+
                     case 2:
                         --z;
                         break;
+
                     case 3:
                         ++z;
                         break;
+
                     case 4:
                         --x;
                         break;
+
                     case 5:
                         ++x;
                 }
 
-                if (this.worldObj.isAirBlock(x, y, z)) 
+                if (this.worldObj.isAirBlock(x, y, z))
                 {
                     this.worldObj.setBlock(x, y, z, Block.fire.blockID);
                 }
-
             }
 
             if (this.isExplosive)
@@ -151,7 +152,7 @@ public class FireBall extends EntitySmallFireball
      * Protected helper method to read subclass entity data from NBT.
      */
     @Override
-    public void readEntityFromNBT(NBTTagCompound nbt) 
+    public void readEntityFromNBT(NBTTagCompound nbt)
     {
         super.readEntityFromNBT(nbt);
 
