@@ -6,9 +6,9 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import cammygames.modjam.armor.Armor;
-import cammygames.modjam.blocks.BlockBW;
 import cammygames.modjam.blocks.BlockBardbedWire;
 import cammygames.modjam.blocks.BlockSGlass;
+import cammygames.modjam.blocks.BlockWD;
 import cammygames.modjam.blocks.tabs.WDBlocks;
 import cammygames.modjam.blocks.tabs.WDItems;
 import cammygames.modjam.items.WDFlameThrower;
@@ -51,6 +51,7 @@ public class WarDefence
     public static Block BombWall3;
     public static Block concrete;
     public static Block shatterGlass;
+    public static Block rawShatterGlass;
     public static Block barbedwire;
 
 	public static Item Knife;
@@ -69,15 +70,19 @@ public class WarDefence
         //					BLOCKS					  \\
         //--------------------------------------------\\
 	    	
-		 BombWall = new BlockBW(BLOCK_ID_PREFIX + 1, Material.rock).setHardness(15).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BombWall");
-		 BombWall2 = new BlockBW(BLOCK_ID_PREFIX + 2, Material.rock).setHardness(50).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BombWall2");
-		 BombWall3 = new BlockBW(BLOCK_ID_PREFIX + 3, Material.rock).setHardness(85).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BombWall3");
+		 BombWall = new BlockWD(BLOCK_ID_PREFIX + 1, Material.rock).setHardness(15).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BombWall");
+		 BombWall2 = new BlockWD(BLOCK_ID_PREFIX + 2, Material.rock).setHardness(50).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BombWall2");
+		 BombWall3 = new BlockWD(BLOCK_ID_PREFIX + 3, Material.rock).setHardness(85).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("BombWall3");
 		 shatterGlass = new BlockSGlass(BLOCK_ID_PREFIX + 4, Material.glass, false).setHardness(50).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("shatterGlass");
 		 barbedwire = new BlockBardbedWire(BLOCK_ID_PREFIX + 5, Material.iron).setHardness(50).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("barbedwire");
-		 concrete = new BlockBW(BLOCK_ID_PREFIX + 6, Material.rock).setHardness(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("concrete");
+		 concrete = new BlockWD(BLOCK_ID_PREFIX + 6, Material.rock).setHardness(7.5F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("concrete");
+		 rawShatterGlass = new BlockSGlass(BLOCK_ID_PREFIX + 7, Material.rock,false).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("rawShatterGlass");
 		 
 		 LanguageRegistry.addName(shatterGlass,"Re-enforced Glass");
 		 GameRegistry.registerBlock(shatterGlass, ToolTips_Helper.class, "shatterGlass");
+		 
+		 LanguageRegistry.addName(rawShatterGlass,"Raw Re-enforced Glass");
+		 GameRegistry.registerBlock(rawShatterGlass, ToolTips_Helper.class, "rawShatterGlass");
 		 
 		 LanguageRegistry.addName(BombWall,"Bomb Proof Wall");
 		 GameRegistry.registerBlock(BombWall, ToolTips_Helper.class, "BombWall");
@@ -132,6 +137,7 @@ public class WarDefence
 	        GameRegistry.addRecipe(new ItemStack(KevlarPlate, 1), new Object[] { "ACA", "CBC", "ACA", Character.valueOf('A'), Item.ingotIron, Character.valueOf('B'), Gel, Character.valueOf('C'), Item.diamond }); 
 	        
 	        GameRegistry.addRecipe(new ItemStack(shatterGlass,16), "xxx", "xyx", "xxx",'x', Block.glass, 'y', BombWall);
+	        GameRegistry.addSmelting(rawShatterGlass.blockID, new ItemStack(shatterGlass,1), 0);
 	        GameRegistry.addRecipe(new ItemStack(concrete,6), "xxx", "xyx", "xxx",'x', Block.stone, 'y', Block.gravel);
 	        GameRegistry.addRecipe(new ItemStack(BombWall,4), "xxx", "xyx", "xxx",'x', Item.ingotIron, 'y', concrete);
 	        GameRegistry.addRecipe(new ItemStack(BombWall2,4), "xxx", "dyd", "xxx",'x', Block.fenceIron, 'y', BombWall,'d', Block.stone);

@@ -31,7 +31,11 @@ public class ToolTips_Helper extends ItemBlock
     	}
       	if (this.getBlockID() == WarDefence.shatterGlass.blockID)
     	{
-    		list.add("Shatter Proof");
+    		list.add("Blast Proof");
+    	}
+      	if (this.getBlockID() == WarDefence.rawShatterGlass.blockID)
+    	{
+    		list.add("Needs Cooking");
     	}
       	if (this.getBlockID() == WarDefence.barbedwire.blockID)
     	{
