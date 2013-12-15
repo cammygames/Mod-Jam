@@ -70,46 +70,9 @@ public class GasBall extends EntitySmallFireball
     @Override
     protected void onImpact(MovingObjectPosition movingObjectPosition) 
     {
-    	if (!this.worldObj.isRemote) 
-        {
 	    	for(int g = 0; g < 20; g++) 
 	    	 	for(int i = 0; i < 10; i++)
 	                     worldObj.spawnParticle("largesmoke", posX + rand.nextGaussian(), posY + rand.nextGaussian(), posZ + rand.nextGaussian(), 0F, 0F, 0F);
-        } 
-        else 
-        {
-            int x = movingObjectPosition.blockX;
-            int y = movingObjectPosition.blockY;
-            int z = movingObjectPosition.blockZ;
-
-            switch (movingObjectPosition.sideHit) 
-            {
-                case 0:
-                    --y;
-                    break;
-                case 1:
-                    ++y;
-                    break;
-                case 2:
-                    --z;
-                    break;
-                case 3:
-                    ++z;
-                    break;
-                case 4:
-                    --x;
-                    break;
-                case 5:
-                    ++x;
-            }
-
-            if (this.worldObj.isAirBlock(x, y, z)) 
-            {
-            	for(int g = 0; g < 20; g++) 
-            	 	for(int i = 0; i < 10; i++)
-                             worldObj.spawnParticle("largesmoke", posX + rand.nextGaussian(), posY + rand.nextGaussian(), posZ + rand.nextGaussian(), 0F, 0F, 0F);
-            }
-        }
     }
 
     /**

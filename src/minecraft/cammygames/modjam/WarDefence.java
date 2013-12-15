@@ -60,7 +60,7 @@ public class WarDefence
 	public static Item KevlarFiber;
 	public static Item camosegment;
 	public static Item KevlarPlate;
-	public static Item csGas;
+	public static Item compGas;
     
     @EventHandler
     public void load(FMLInitializationEvent event) 
@@ -104,13 +104,13 @@ public class WarDefence
 			KevlarFiber = new WarDefenceItems(ITEM_ID_PREFIX + 4).setUnlocalizedName("KevlarFiber").setTextureName("WarDefence:Kevlar");
 			flameThrower = new WDFlameThrower(ITEM_ID_PREFIX + 5).setUnlocalizedName("flameThrower").setTextureName("WarDefence:flameThrower");
 			gasThrower = new WDGasThrower(ITEM_ID_PREFIX + 27).setUnlocalizedName("gasThrower").setTextureName("WarDefence:flameThrower");
-			csGas = new WarDefenceItems(ITEM_ID_PREFIX + 28).setUnlocalizedName("csGas").setTextureName("WarDefence:csGas");    
+			compGas = new WarDefenceItems(ITEM_ID_PREFIX + 28).setUnlocalizedName("compGas").setTextureName("WarDefence:compGas");    
 			
 			
 	        LanguageRegistry.addName(Gel, "Ballistics Gel");
 	        LanguageRegistry.addName(Knife, "Knife");
 	    	LanguageRegistry.addName(camosegment, "Camo Segment");   
-	    	LanguageRegistry.addName(csGas, "Tear Gas"); 
+	    	LanguageRegistry.addName(compGas, "Compressed Gas"); 
 	    	LanguageRegistry.addName(KevlarPlate, "Kevlar Plate");   
 	    	LanguageRegistry.addName(KevlarFiber, "Kevlar Fiber");  
 	    	LanguageRegistry.addName(flameThrower, "Flame Thrower"); 
