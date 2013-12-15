@@ -73,11 +73,10 @@ public class WDGasThrower extends ItemBow
 		{
 			target.motionY = 2;
 
-			
-			
-			
-			if(!player.inventory.hasItem(WarDefence.compGas.itemID))
+			if(player.inventory.hasItem(WarDefence.compGas.itemID))
 			{
+				player.inventory.consumeInventoryItem(WarDefence.compGas.itemID);
+				
 				if (flag)
 				{
 					target.motionX = (target.posX - player.posZ) * 4;
@@ -101,30 +100,6 @@ public class WDGasThrower extends ItemBow
 			
 		return false;	
 	}
-    
-    public boolean onLeftClickEntity(ItemStack itemstack, EntityPlayer player, Entity entity, EntityLivingBase target)
-    {
-		if (!target.worldObj.isRemote) 
-		{
-			target.motionY = 2;
-	
-			if(!player.inventory.hasItem(WarDefence.compGas.itemID))
-			{
-					target.motionX = (target.posX - player.posZ) * 4;
-					target.motionZ = (target.posZ - player.posX) * 4;
-					System.out.println("SNEAKING");
-			}
-			
-			itemstack.setItemDamage(0);
-
-		}
-		else
-		{
-			itemstack.setItemDamage(itemstack.getItemDamage() + 1);
-		}
-			
-		return false;	
-    }
     
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
