@@ -35,7 +35,7 @@ public class ToolTips_Helper extends ItemBlock
     	}
       	if (this.getBlockID() == WarDefence.rawShatterGlass.blockID)
     	{
-    		list.add("Needs Cooking");
+    		list.add("Needs Heat To Become Tempered!");
     	}
       	if (this.getBlockID() == WarDefence.barbedwire.blockID)
     	{
