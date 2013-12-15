@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -22,9 +23,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class WDGasThrower extends ItemBow
 {
+	private boolean flag = false;
+	
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
+	{	
 		if(!player.inventory.hasItem(WarDefence.compGas.itemID))
 		{
 			list.add("Requires Compressed Gas");
@@ -70,13 +73,16 @@ public class WDGasThrower extends ItemBow
 		{
 			target.motionY = 2;
 
+			
+			
+			
 			if(!player.inventory.hasItem(WarDefence.compGas.itemID))
 			{
-				if (player.isSneaking())
+				if (flag)
 				{
-					target.motionX = (target.posX - player.posX) * 2;
-					target.motionZ = (target.posZ - player.posZ) * 2;
-					target.motionY = (target.posX - player.posZ) * 2;
+					target.motionX = (target.posX - player.posZ) * 4;
+					target.motionZ = (target.posZ - player.posX) * 4;
+					System.out.println("SNEAKING");
 				}
 				else
 				{
@@ -95,6 +101,30 @@ public class WDGasThrower extends ItemBow
 			
 		return false;	
 	}
+    
+    public boolean onLeftClickEntity(ItemStack itemstack, EntityPlayer player, Entity entity, EntityLivingBase target)
+    {
+		if (!target.worldObj.isRemote) 
+		{
+			target.motionY = 2;
+	
+			if(!player.inventory.hasItem(WarDefence.compGas.itemID))
+			{
+					target.motionX = (target.posX - player.posZ) * 4;
+					target.motionZ = (target.posZ - player.posX) * 4;
+					System.out.println("SNEAKING");
+			}
+			
+			itemstack.setItemDamage(0);
+
+		}
+		else
+		{
+			itemstack.setItemDamage(itemstack.getItemDamage() + 1);
+		}
+			
+		return false;	
+    }
     
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
