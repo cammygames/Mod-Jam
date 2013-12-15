@@ -139,9 +139,15 @@ public class WarDefence
         GameRegistry.addRecipe(new ItemStack(Armor.JuggernautBodyArmor, 1), new Object[] { "A A", "AAA", "AAA", 'A', WarDefence.KevlarPlate });
         GameRegistry.addRecipe(new ItemStack(Armor.JuggernautLegs, 1), new Object[] { "AAA", "A A", "A A", 'A', WarDefence.KevlarPlate });
         GameRegistry.addRecipe(new ItemStack(Armor.JuggernautBoots, 1), new Object[] { "A A", "A A", 'A', WarDefence.KevlarPlate });
-        GameRegistry.addRecipe(new ItemStack(Armor.ScubaHelmet, 1), new Object[] { "BBB", "BAB", "BBB", 'A', Block.glass, 'B', Block.cloth });
-        GameRegistry.addRecipe(new ItemStack(Armor.ScubaBody, 1), new Object[] { "B B", "BBB", "BBB", 'B', Block.cloth });
-        GameRegistry.addRecipe(new ItemStack(Armor.ScubaLegs, 1), new Object[] { "BBB", "B B", "B B", 'B', Block.cloth });
-        GameRegistry.addRecipe(new ItemStack(Armor.ScubaBoots, 1), new Object[] { "B B", "B B", 'B', Block.cloth });
+       
+        GameRegistry.addRecipe(new ItemStack(Armor.ScubaHelmet, 1), new Object[] { "GBG", "BAB", "GBG", 'A', Block.glass, 'B', Block.cloth,'G', Gel });
+        GameRegistry.addRecipe(new ItemStack(Armor.ScubaBody, 1), new Object[] { "G G", "BBB", "GBG", 'B', Block.cloth ,'G', Gel});
+        GameRegistry.addRecipe(new ItemStack(Armor.ScubaLegs, 1), new Object[] { "GBG", "B B", "G G", 'B', Block.cloth,'G', Gel });
+        GameRegistry.addRecipe(new ItemStack(Armor.ScubaBoots, 1), new Object[] { "G G", "B B", 'B', Block.cloth,'G', Gel });
+        
+        GameRegistry.addRecipe(new ItemStack(Armor.SantaHelmet, 1), new Object[] { "BBB", "B B",'B', Block.cloth });
+        GameRegistry.addRecipe(new ItemStack(Armor.SantaBody, 1), new Object[] { "B B", "BBB", "BBB", 'B', Block.cloth });
+        GameRegistry.addRecipe(new ItemStack(Armor.SantaLegs, 1), new Object[] { "BBB", "B B", "B B", 'B', Block.cloth });
+        GameRegistry.addRecipe(new ItemStack(Armor.SantaBoots, 1), new Object[] { "B B", "B B", 'B', Block.cloth });
     }
 }
